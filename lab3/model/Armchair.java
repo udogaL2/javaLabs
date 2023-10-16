@@ -3,12 +3,14 @@ package model;
 public class Armchair
 {
 	private String name;
+	private int number;
 	private String description;
 	private String type;
 
-	public Armchair(String name, String description, String type)
+	public Armchair(String name, int number, String description, String type)
 	{
 		this.name = name;
+		this.number = number;
 		this.description = description;
 		this.type = type;
 	}
@@ -29,4 +31,8 @@ public class Armchair
 		return type;
 	}
 
+	public int getNumber()
+	{
+		return number;
+	}
 }
