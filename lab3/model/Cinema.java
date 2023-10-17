@@ -7,10 +7,10 @@ public class Cinema
 	private String title;
 	private ArrayList<CinemaHall> cinemaHallList;
 
-	public Cinema(String title, ArrayList<CinemaHall> cinemaHallList)
+	public Cinema(String title)
 	{
 		this.title = title;
-		this.cinemaHallList = cinemaHallList;
+		this.cinemaHallList = new ArrayList<>();
 	}
 
 	public String getTitle()
@@ -26,5 +26,10 @@ public class Cinema
 	public void addCinemaHall(CinemaHall cinemaHall)
 	{
 		this.cinemaHallList.add(cinemaHall);
+	}
+
+	public void setTitle(String title)
+	{
+		this.title = title;
 	}
 }

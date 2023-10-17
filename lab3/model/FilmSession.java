@@ -14,7 +14,6 @@ public class FilmSession
 		this.film = film;
 		this.startTime = startTime;
 		this.cinemaHall = cinemaHall;
-
 	}
 
 	public Film getFilm()

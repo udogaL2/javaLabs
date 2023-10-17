@@ -14,12 +14,12 @@ public class CinemaHall
 		this.title = title;
 		this.rowCount = rowCount;
 		this.seatsMatrix = new ArrayList<>(rowCount);
-		for(int i=0; i < rowCount; i++) {
+		for (int i = 0; i < rowCount; i++)
+		{
 			this.seatsMatrix.add(new ArrayList<>());
 		}
 		this.filmSessionList = new ArrayList<>();
 	}
-
 
 	public String getTitle()
 	{
