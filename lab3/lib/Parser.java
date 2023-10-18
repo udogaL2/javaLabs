@@ -1,20 +1,11 @@
 package lib;
 
+import lib.Validator;
 public class Parser
 {
-    public static boolean isNumeric(String string)
-    {
-        try {
-            Integer.parseInt(string);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
-
     public static int parseRawIndexToInt(String rowIndex)
     {
-        if (!isNumeric(rowIndex))
+        if (!Validator.isNumeric(rowIndex))
         {
             return -1;
         }
