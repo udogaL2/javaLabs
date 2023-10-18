@@ -10,28 +10,16 @@ public class Main
 {
 	public static void main(String[] arg)
 	{
-		ArrayList<Cinema> cinemaList = new ArrayList<>();
-		Scanner in = new Scanner(System.in);
+		Armchair ar = ArmchairController.createNewArmchair("Arm1", "desc", "T");
 
-		while (true)
-		{
-			String command = in.nextLine();
+		CinemaHall ch = CinemaHallController.createNewCinemaHall("CinemaHall1", 3);
 
-			if (Objects.equals(command, "1"))
-			{
-				String title = in.nextLine();
-				cinemaList.add(CinemaController.createNewCinema(title));
-			}
-			else if (Objects.equals(command, "2"))
-			{
-				int index = in.nextInt();
-				in.nextLine();
-				CinemaView.printCinema(cinemaList.get(index));
-			}
-			else if (Objects.equals(command, "3"))
-			{
-				break;
-			}
-		}
+		ArrayList<CinemaHall> arrayList = new ArrayList<>();
+
+		arrayList.add(ch);
+
+		CinemaHallController.addArmchairToCinemaHall(arrayList, 0, 0, ar);
+
+		CinemaHallView.printCinemaHall(arrayList.get(0));
 	}
 }

@@ -2,22 +2,21 @@ package model;
 
 public class Armchair
 {
-	private String name;
+	private String title;
 	private int number;
 	private String description;
 	private String type;
 
-	public Armchair(String name, int number, String description, String type)
+	public Armchair(String title, String description, String type)
 	{
-		this.name = name;
-		this.number = number;
+		this.title = title;
 		this.description = description;
 		this.type = type;
 	}
 
-	public String getName()
+	public String getTitle()
 	{
-		return name;
+		return title;
 	}
 
 
@@ -34,5 +33,10 @@ public class Armchair
 	public int getNumber()
 	{
 		return number;
+	}
+
+	public void setNumber(int number)
+	{
+		this.number = number;
 	}
 }
