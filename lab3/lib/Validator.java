@@ -9,7 +9,8 @@ public class Validator
 		{
 			Integer.parseInt(string);
 			return true;
-		} catch (NumberFormatException e)
+		}
+		catch (NumberFormatException e)
 		{
 			return false;
 		}

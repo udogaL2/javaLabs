@@ -16,4 +16,17 @@ public class CinemaView
 			System.out.println(cinemaHall);
 		}
 	}
+
+	static public String prepareCinemaListToPrint(ArrayList<Cinema> cinemaList)
+	{
+		StringBuilder result = new StringBuilder();
+
+		for (int i = 0; i < cinemaList.size(); i++)
+		{
+			Cinema cinema = cinemaList.get(i);
+			result.append(i).append(". ").append(cinema.getTitle());
+		}
+
+		return result.toString();
+	}
 }

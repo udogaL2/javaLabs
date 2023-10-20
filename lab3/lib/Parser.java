@@ -1,11 +1,12 @@
 package lib;
 
-import lib.Validator;
+import static lib.Validator.isNumeric;
+
 public class Parser
 {
     public static int parseRawIndexToInt(String rowIndex)
     {
-        if (!Validator.isNumeric(rowIndex))
+        if (!isNumeric(rowIndex))
         {
             return -1;
         }

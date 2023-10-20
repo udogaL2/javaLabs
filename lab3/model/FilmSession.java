@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class FilmSession
@@ -7,7 +8,7 @@ public class FilmSession
 	private Film film;
 	private CinemaHall cinemaHall;
 	private Date startTime;
-	private boolean[][] purchasedSeatList;
+
 
 	public FilmSession(Film film, Date startTime, CinemaHall cinemaHall)
 	{
@@ -44,20 +45,5 @@ public class FilmSession
 	public void setCinemaHall(CinemaHall cinemaHall)
 	{
 		this.cinemaHall = cinemaHall;
-	}
-
-	public boolean[][] getPurchasedSeatList()
-	{
-		return purchasedSeatList;
-	}
-
-	public void setPurchasedSeat(int row, int seat)
-	{
-		this.purchasedSeatList[row][seat] = true;
-	}
-
-	public void setFreeSeat(int row, int seat)
-	{
-		this.purchasedSeatList[row][seat] = false;
 	}
 }

@@ -50,4 +50,14 @@ public class CinemaHall
 	{
 		this.filmSessionList.add(filmSessionList);
 	}
+
+	public void setPurchasedSeat(int row, int seat)
+	{
+		this.seatsMatrix.get(row).get(seat).setStatus(true);
+	}
+
+	public void setFreeSeat(int row, int seat)
+	{
+		this.seatsMatrix.get(row).get(seat).setStatus(false);
+	}
 }
