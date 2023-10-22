@@ -2,7 +2,6 @@ package lib;
 
 public class Validator
 {
-
 	public static boolean isNumeric(String string)
 	{
 		try

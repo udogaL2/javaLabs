@@ -1,9 +1,7 @@
 package lib;
 
 import model.*;
-import controller.*;
 import view.*;
-import lib.*;
 
 
 import java.util.Scanner;
@@ -11,54 +9,48 @@ import java.util.ArrayList;
 
 public class Application
 {
-	private ArrayList<Cinema> cinemaList;
-	private ArrayList<Armchair> armchairTemplateList;
-	private ArrayList<FilmSession> filmSessionList;
-	private Lang lang;
+	private final ArrayList<Cinema> cinemaList;
+	private final ArrayList<Armchair> armchairTemplateList;
+	private final ArrayList<FilmSession> filmSessionList;
+	private final Lang lang;
+	private final Scanner inScanner;
 	private boolean runnig;
 	private boolean isAdmin;
 
 	public Application()
 	{
-		this.cinemaList = new ArrayList<>();
-		this.armchairTemplateList = new ArrayList<>();
-		this.filmSessionList = new ArrayList<>();
-		this.runnig = true;
-		this.isAdmin = false;
-		this.lang = new Lang();
+		cinemaList = new ArrayList<>();
+		armchairTemplateList = new ArrayList<>();
+		filmSessionList = new ArrayList<>();
+		runnig = true;
+		isAdmin = false;
+
+		lang = new Lang();
+		inScanner = new Scanner(System.in);
 	}
 
 	public void start()
 	{
-		Scanner inScanner = new Scanner(System.in);
+		startMessage();
 
-		this.startMessage(inScanner);
-
-		while (this.runnig)
+		while (runnig)
 		{
-			if (this.isAdmin)
+			if (isAdmin)
 			{
-				print(this.lang.getMessage("APPLICATION_ADMIN_COMMAND_LIST"));
-			}
-			else
+				print(lang.getMessage("APPLICATION_ADMIN_COMMAND_LIST"));
+			} else
 			{
-				print(this.lang.getMessage("APPLICATION_USER_COMMAND_LIST"));
-			}
-
-			String command = inScanner.nextLine();
-
-			if (!Validator.isStringValid(command))
-			{
-				print(this.lang.getMessage("APPLICATION_COMMAND_IS_NOT_VALID"));
-				continue;
+				print(lang.getMessage("APPLICATION_USER_COMMAND_LIST"));
 			}
 
-			switch (Parser.parseRawIndexToInt(command))
+			String command = getUserStringWhileIsNotValid(true);
+
+			switch (Parser.parseRawStringToInt(command))
 			{
 				case (1):
-					if (this.isAdmin)
+					if (isAdmin)
 					{
-						this.startFilmAdminAction(inScanner);
+						startFilmAdminAction();
 					}
 
 					break;
@@ -76,101 +68,138 @@ public class Application
 					break;
 
 				case (0):
-					startMessage(inScanner);
+					startMessage();
 					break;
 
 				default:
-					System.out.println(Parser.parseRawIndexToInt(command));
-					print(this.lang.getMessage("APPLICATION_COMMAND_NOT_FOUND"));
+					print(lang.getMessage("APPLICATION_COMMAND_NOT_FOUND"));
 					break;
 			}
 		}
 	}
 
-	private void startMessage(Scanner inScanner)
+	private void startMessage()
 	{
-		print(this.lang.getMessage("APPLICATION_TITLE"));
-		String command = "";
+		print(lang.getMessage("APPLICATION_TITLE"));
 
+		String command = getUserStringWhileIsNotValid(true);
+
+		switch (Parser.parseRawStringToInt(command))
+		{
+			case (1):
+				print(lang.getMessage("APPLICATION_LOGIN_AS_USER"));
+				isAdmin = false;
+				return;
+			case (2):
+				print(lang.getMessage("APPLICATION_LOGIN_AS_ADMIN"));
+				isAdmin = true;
+				return;
+			case (0):
+				runnig = false;
+				return;
+			default:
+				print(lang.getMessage("APPLICATION_COMMAND_NOT_FOUND"));
+				break;
+		}
+	}
+
+	private void startFilmAdminAction()
+	{
+		print(lang.getMessage("APPLICATION_ADMIN_CINEMA_COMMAND_LIST"));
+
+		String command = getUserStringWhileIsNotValid(true);
+
+		switch (Parser.parseRawStringToInt(command))
+		{
+			case (1):
+				printCinemaList();
+				return;
+			case (2):
+				createNewCinemaAction();
+				return;
+			case (3):
+				printCinemaList();
+				deleteCinemaAction();
+				return;
+			case (0):
+				return;
+			default:
+				print(lang.getMessage("APPLICATION_COMMAND_NOT_FOUND"));
+				break;
+		}
+	}
+
+	private String getUserStringWhileIsNotValid(boolean isNumber)
+	{
 		while (true)
 		{
-			command = inScanner.nextLine();
+			print(lang.getMessage("APPLICATION_USER_INPUT"), true);
+			String command = inScanner.nextLine();
 
-			if (!Validator.isStringValid(command))
+			if (Validator.isStringValid(command) && (!isNumber || Validator.isNumeric(command)))
 			{
-				print(this.lang.getMessage("APPLICATION_COMMAND_IS_NOT_VALID"));
-				continue;
+				return command;
 			}
 
-			switch (Parser.parseRawIndexToInt(command))
-			{
-				case (1):
-					print(this.lang.getMessage("APPLICATION_LOGIN_AS_USER"));
-					this.isAdmin = false;
-					return;
-				case (2):
-					print(this.lang.getMessage("APPLICATION_LOGIN_AS_ADMIN"));
-					this.isAdmin = true;
-					return;
-				case (0):
-					this.runnig = false;
-					return;
-				default:
-					print(this.lang.getMessage("APPLICATION_COMMAND_NOT_FOUND"));
-					break;
-			}
+			print(lang.getMessage("APPLICATION_COMMAND_IS_NOT_VALID"));
 		}
 	}
 
-	private void startFilmAdminAction(Scanner inScanner)
-	{
-		print(this.lang.getMessage("APPLICATION_ADMIN_CINEMA_COMMAND_LIST"));
-
-		String command = "";
-
-		while (!Validator.isStringValid(command))
-		{
-			command = inScanner.nextLine();
-
-			if (!Validator.isStringValid(command))
-			{
-				print(this.lang.getMessage("APPLICATION_COMMAND_IS_NOT_VALID"));
-				return;
-			}
-
-			switch (Parser.parseRawIndexToInt(command))
-			{
-				case (1):
-					this.printCinemaList();
-					return;
-				case (2):
-					this.printCinemaList();
-					return;
-				case (3):
-					this.printCinemaList();
-					return;
-				case (0):
-					return;
-				default:
-					print(this.lang.getMessage("APPLICATION_COMMAND_NOT_FOUND"));
-					break;
-			}
-		}
-	}
-
-	private static int getIndexFromConsole(Scanner inScanner)
+	private static int getIndexFromConsole()
 	{
 		return 0;
 	}
 
 	private void printCinemaList()
 	{
-		print(this.lang.getMessage("APPLICATION_CINEMA_LIST"));
-		print(CinemaView.prepareCinemaListToPrint(this.cinemaList));
+		print(lang.getMessage("APPLICATION_CINEMA_LIST"));
+		print(CinemaView.prepareCinemaListToPrint(cinemaList));
+	}
+
+	private void createNewCinemaAction()
+	{
+		if (!isAdmin)
+		{
+			return;
+		}
+
+		print(lang.getMessage("APPLICATION_GET_CINEMA_TITLE"));
+		String title = getUserStringWhileIsNotValid(false);
+
+		cinemaList.add(new Cinema(title));
+	}
+
+	private void deleteCinemaAction()
+	{
+		if (!isAdmin)
+		{
+			return;
+		}
+
+		print(lang.getMessage("APPLICATION_GET_CINEMA_INDEX_TO_DELETE"));
+		int index = Parser.parseRawStringToInt(getUserStringWhileIsNotValid(true));
+
+		if (index >= 0 && index < cinemaList.size())
+		{
+			cinemaList.remove(index);
+		}
+
+		print(lang.getMessage("APPLICATION_INDEX_IS_NOT_VALID"));
 	}
 
 	private static void print(String message)
 	{
+		System.out.println(message);
+	}
+
+	private static void print(String message, boolean isOnSameLine)
+	{
+		if (isOnSameLine)
+		{
+			System.out.print(message);
+			return;
+		}
+
 		System.out.println(message);
 	}
 }

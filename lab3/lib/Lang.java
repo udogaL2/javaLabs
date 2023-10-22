@@ -37,6 +37,8 @@ public class Lang
 		this.messageList.put("APPLICATION_LOGIN_AS_USER", "Вы вошли как посетитель.");
 		this.messageList.put("APPLICATION_COMMAND_IS_NOT_VALID", "Команда введена некорректно.");
 		this.messageList.put("APPLICATION_COMMAND_NOT_FOUND", "Введенная команда не найдена.");
+		this.messageList.put("APPLICATION_INDEX_IS_NOT_VALID", "Введенная номер введен некорректно.");
+		this.messageList.put("APPLICATION_USER_INPUT", "--> ");
 
 		this.messageList.put("APPLICATION_ADMIN_COMMAND_LIST",
   			"""
@@ -60,7 +62,7 @@ public class Lang
 			0. Выйти в меню выбора команд
 			"""
 		);
-		this.messageList.put("APPLICATION_CINEMA_LIST", "Текущий список кинотеатров");
+		this.messageList.put("APPLICATION_CINEMA_LIST", "Текущий список кинотеатров:");
 		this.messageList.put("APPLICATION_USER_COMMAND_LIST",
 			"""
 			Доступные команды для посетителя:
@@ -70,6 +72,9 @@ public class Lang
 			0. Выйти в меню выбора роли
 			"""
 		);
+
+		this.messageList.put("APPLICATION_GET_CINEMA_TITLE", "Введите название кинотеатра.");
+		this.messageList.put("APPLICATION_GET_CINEMA_INDEX_TO_DELETE", "Введите номер кинотеатра, который хотите удалить.");
 	}
 
 	public String getMessage(String messageCode)

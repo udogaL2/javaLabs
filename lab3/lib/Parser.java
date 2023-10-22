@@ -1,16 +1,9 @@
 package lib;
 
-import static lib.Validator.isNumeric;
-
 public class Parser
 {
-    public static int parseRawIndexToInt(String rowIndex)
+    public static int parseRawStringToInt(String rowString)
     {
-        if (!isNumeric(rowIndex))
-        {
-            return -1;
-        }
-
-        return Integer.parseInt(rowIndex);
+        return Integer.parseInt(rowString);
     }
 }
