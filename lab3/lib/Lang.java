@@ -35,7 +35,7 @@ public class Lang
 		);
 		this.messageList.put("APPLICATION_LOGIN_AS_ADMIN", "Вы вошли как администратор.");
 		this.messageList.put("APPLICATION_LOGIN_AS_USER", "Вы вошли как посетитель.");
-		this.messageList.put("APPLICATION_COMMAND_IS_NOT_VALID", "Команда введена некорректно.");
+		this.messageList.put("APPLICATION_COMMAND_IS_NOT_VALID", "Данные введены некорректно.");
 		this.messageList.put("APPLICATION_COMMAND_NOT_FOUND", "Введенная команда не найдена.");
 		this.messageList.put("APPLICATION_INDEX_IS_NOT_VALID", "Номер введен некорректно.");
 		this.messageList.put("APPLICATION_EMPTY_LIST", "Запрашиваемый список пуст.");
@@ -98,6 +98,22 @@ public class Lang
 		this.messageList.put("APPLICATION_GET_CINEMAHALL_CINEMA_ID_TO_ADD", "Введите номер кинотеатра, в который хотите добавить этот кинозал.");
 		this.messageList.put("APPLICATION_GET_CINEMAHALL_INDEX_TO_DELETE", "Введите номер кинозала, который хотите удалить.");
 
+		this.messageList.put("APPLICATION_ADMIN_FILM_COMMAND_LIST",
+				"""
+				Доступные команды для фильмов:
+				1. Посмотреть текущий список фильмов
+				2. Создать
+				3. Удалить
+				
+				0. Выйти в меню выбора команд
+				"""
+		);
+		this.messageList.put("APPLICATION_FILM_LIST", "Текущий список фильмов:");
+		this.messageList.put("APPLICATION_FILM_GET_TITLE", "Введите название фильма.");
+		this.messageList.put("APPLICATION_FILM_GET_DESCRIPTION", "Введите короткое описание фильма (не более 256 символов).");
+		this.messageList.put("APPLICATION_FILM_GET_DURATION", "Введите продолжительность фильма в минутах.");
+		this.messageList.put("APPLICATION_FILM_INPUT_DURATION_ERROR", "Продолжительность не может быть отрицательной");
+		this.messageList.put("APPLICATION_GET_FILM_INDEX_TO_DELETE", "Введите номер фильма, который хотите удалить.");
 	}
 
 	public String getMessage(String messageCode)

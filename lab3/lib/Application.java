@@ -12,6 +12,7 @@ public class Application
 	private final ArrayList<Cinema> cinemaList;
 	private final ArrayList<Armchair> armchairTemplateList;
 	private final ArrayList<FilmSession> filmSessionList;
+	private final ArrayList<Film> filmList;
 	private final Lang lang;
 	private final Scanner inScanner;
 	private boolean runnig;
@@ -22,6 +23,7 @@ public class Application
 		cinemaList = new ArrayList<>();
 		armchairTemplateList = new ArrayList<>();
 		filmSessionList = new ArrayList<>();
+		filmList = new ArrayList<>();
 		runnig = true;
 		isAdmin = false;
 
@@ -64,6 +66,11 @@ public class Application
 					break;
 
 				case (3):
+					if(isAdmin)
+					{
+						startFilmAdminAction();
+					}
+
 					break;
 
 				case (4):
@@ -373,6 +380,96 @@ public class Application
 		}
 
 		cinemaHallList.remove(index);
+
+		//TODO: добавить удаление сеансов в удаляемом кинозале
+	}
+
+	private void startFilmAdminAction()
+	{
+		print(lang.getMessage("APPLICATION_ADMIN_FILM_COMMAND_LIST"));
+
+		String command = getUserStringWhileIsNotValid(true);
+
+		switch (Parser.parseRawStringToInt(command))
+		{
+			case (1):
+				printFilmList();
+				return;
+			case (2):
+				createNewFilmAction();
+				return;
+			case (3):
+				printFilmList();
+				deleteFilmAction();
+				return;
+			case (0):
+				return;
+			default:
+				print(lang.getMessage("APPLICATION_COMMAND_NOT_FOUND"));
+		}
+	}
+
+	private void printFilmList()
+	{
+		print(lang.getMessage("APPLICATION_FILM_LIST"));
+
+		if (filmList.isEmpty())
+		{
+			print(lang.getMessage("APPLICATION_EMPTY_LIST"));
+			return;
+		}
+
+		print(FilmView.prepareFilmListToPrint(filmList));
+	}
+
+	private void createNewFilmAction()
+	{
+		if (!isAdmin)
+		{
+			return;
+		}
+
+		print(lang.getMessage("APPLICATION_FILM_GET_TITLE"));
+		String title = getUserStringWhileIsNotValid(false);
+
+		print(lang.getMessage("APPLICATION_FILM_GET_DESCRIPTION"));
+		String description = getUserStringWhileIsNotValid(false);
+
+		print(lang.getMessage("APPLICATION_FILM_GET_DURATION"));
+		int duration = Parser.parseRawStringToInt(getUserStringWhileIsNotValid(true));
+
+		if (duration == 0)
+		{
+			print(lang.getMessage("APPLICATION_FILM_INPUT_DURATION_ERROR"));
+		}
+
+		filmList.add(new Film(title, description, duration));
+	}
+
+	private void deleteFilmAction()
+	{
+		if (!isAdmin)
+		{
+			return;
+		}
+
+		if (filmList.isEmpty())
+		{
+			return;
+		}
+
+		print(lang.getMessage("APPLICATION_GET_FILM_INDEX_TO_DELETE"));
+		int index = Parser.parseRawStringToInt(getUserStringWhileIsNotValid(true)) - 1;
+
+		if (index >= 0 && index < filmList.size())
+		{
+			filmList.remove(index);
+			return;
+		}
+
+		print(lang.getMessage("APPLICATION_INDEX_IS_NOT_VALID"));
+
+		//TODO: добавить удаление сеансов с удаляемом фильмом
 	}
 
 	private static void print(String message)
