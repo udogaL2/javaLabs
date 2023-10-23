@@ -2,16 +2,15 @@ package lib;
 
 public class Validator
 {
-	public static boolean isNumeric(String string)
+	public static int isNumeric(String string)
 	{
 		try
 		{
-			Integer.parseInt(string);
-			return true;
+			return Integer.parseInt(string);
 		}
 		catch (NumberFormatException e)
 		{
-			return false;
+			return -1;
 		}
 	}
 

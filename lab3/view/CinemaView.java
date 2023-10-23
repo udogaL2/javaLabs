@@ -24,7 +24,7 @@ public class CinemaView
 		for (int i = 0; i < cinemaList.size(); i++)
 		{
 			Cinema cinema = cinemaList.get(i);
-			result.append(i).append(". ").append(cinema.getTitle()).append('\n');
+			result.append(i + 1).append(". ").append(cinema.getTitle()).append('\n');
 		}
 
 		return result.toString();

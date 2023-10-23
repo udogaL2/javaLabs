@@ -1,6 +1,7 @@
 package view;
 
 import model.Armchair;
+import model.Cinema;
 import model.CinemaHall;
 
 import java.util.ArrayList;
@@ -14,6 +15,45 @@ public class CinemaHallView
 		for (ArrayList<Armchair> rowList : cinemaHallList)
 		{
 			System.out.println(rowList);
+		}
+	}
+
+	static public String prepareCinemaHallListToPrint(ArrayList<CinemaHall> cinemaHallList)
+	{
+		StringBuilder result = new StringBuilder();
+
+		for (int i = 0; i < cinemaHallList.size(); i++)
+		{
+			CinemaHall cinema = cinemaHallList.get(i);
+			result.append(i + 1).append(". ").append(cinema.getTitle()).append('\n');
+		}
+
+		return result.toString();
+	}
+
+	static public String prepareCinemaHallScheme(CinemaHall cinemaHall)
+	{
+		StringBuilder result = new StringBuilder();
+
+		boolean isNotEmpty = true;
+
+		for (ArrayList<Armchair> armchairList: cinemaHall.getSeatsMatrix())
+		{
+			for (Armchair armchair: armchairList)
+			{
+				result.append(armchair.getType()).append(' ');
+			}
+			isNotEmpty = isNotEmpty && !armchairList.isEmpty();
+			result.append('\n');
+		}
+
+		if (isNotEmpty)
+		{
+			return result.toString();
+		}
+		else
+		{
+			return "";
 		}
 	}
 }

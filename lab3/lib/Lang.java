@@ -37,7 +37,8 @@ public class Lang
 		this.messageList.put("APPLICATION_LOGIN_AS_USER", "Вы вошли как посетитель.");
 		this.messageList.put("APPLICATION_COMMAND_IS_NOT_VALID", "Команда введена некорректно.");
 		this.messageList.put("APPLICATION_COMMAND_NOT_FOUND", "Введенная команда не найдена.");
-		this.messageList.put("APPLICATION_INDEX_IS_NOT_VALID", "Введенная номер введен некорректно.");
+		this.messageList.put("APPLICATION_INDEX_IS_NOT_VALID", "Номер введен некорректно.");
+		this.messageList.put("APPLICATION_EMPTY_LIST", "Запрашиваемый список пуст.");
 		this.messageList.put("APPLICATION_USER_INPUT", "--> ");
 
 		this.messageList.put("APPLICATION_ADMIN_COMMAND_LIST",
@@ -75,6 +76,28 @@ public class Lang
 
 		this.messageList.put("APPLICATION_GET_CINEMA_TITLE", "Введите название кинотеатра.");
 		this.messageList.put("APPLICATION_GET_CINEMA_INDEX_TO_DELETE", "Введите номер кинотеатра, который хотите удалить.");
+
+		this.messageList.put("APPLICATION_CINEMAHALL_LIST", "Текущий список кинозалов:");
+		this.messageList.put("APPLICATION_ADMIN_CINEMAHALL_COMMAND_LIST",
+			"""
+			Доступные команды для кинозалов:
+			1. Посмотреть текущий список для конкретного кинотеатра
+			2. Посмотреть схему кинозала
+			3. Создать
+			4. Удалить
+			
+			0. Выйти в меню выбора команд
+			"""
+		);
+		this.messageList.put("APPLICATION_GET_CINEMAHALL_CINEMA_ID", "Введите номер кинотеатра, для которого хотите увидеть список кинозалов.");
+		this.messageList.put("APPLICATION_GET_CINEMAHALL_ID", "Введите номер кинозала, для которого хотите увидеть схему.");
+		this.messageList.put("APPLICATION_GET_CINEMAHALL_EMPTY_CINEMA_LIST", "Для создания нового кинозала необходимо, чтобы был создан хотя бы один кинотеатр.");
+		this.messageList.put("APPLICATION_GET_CINEMAHALL_TITLE", "Введите название кинозала.");
+		this.messageList.put("APPLICATION_GET_CINEMAHALL_ROW_COUNT", "Введите количество рядов кинозала.");
+		this.messageList.put("APPLICATION_GET_CINEMAHALL_ROW_COUNT_NOT_VALID", "Введите количество рядов кинозала не может быть равным нулю.");
+		this.messageList.put("APPLICATION_GET_CINEMAHALL_CINEMA_ID_TO_ADD", "Введите номер кинотеатра, в который хотите добавить этот кинозал.");
+		this.messageList.put("APPLICATION_GET_CINEMAHALL_INDEX_TO_DELETE", "Введите номер кинозала, который хотите удалить.");
+
 	}
 
 	public String getMessage(String messageCode)
