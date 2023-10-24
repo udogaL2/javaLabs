@@ -1,30 +1,18 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 public class FilmSession
 {
-	private Film film;
-	private CinemaHall cinemaHall;
+	private int filmIndex;
+	private int cinemaHallIndex;
 	private Date startTime;
 
-
-	public FilmSession(Film film, Date startTime, CinemaHall cinemaHall)
+	public FilmSession(int filmIndex, int cinemaHallIndex, Date startTime)
 	{
-		this.film = film;
+		this.filmIndex = filmIndex;
+		this.cinemaHallIndex = cinemaHallIndex;
 		this.startTime = startTime;
-		this.cinemaHall = cinemaHall;
-	}
-
-	public Film getFilm()
-	{
-		return film;
-	}
-
-	public void setFilm(Film film)
-	{
-		this.film = film;
 	}
 
 	public Date getStartTime()
@@ -37,13 +25,23 @@ public class FilmSession
 		this.startTime = startTime;
 	}
 
-	public CinemaHall getCinemaHall()
+	public int getFilmIndex()
 	{
-		return cinemaHall;
+		return filmIndex;
 	}
 
-	public void setCinemaHall(CinemaHall cinemaHall)
+	public void setFilmIndex(int filmIndex)
 	{
-		this.cinemaHall = cinemaHall;
+		this.filmIndex = filmIndex;
+	}
+
+	public int getCinemaHallIndex()
+	{
+		return cinemaHallIndex;
+	}
+
+	public void setCinemaHallIndex(int cinemaHallIndex)
+	{
+		this.cinemaHallIndex = cinemaHallIndex;
 	}
 }
