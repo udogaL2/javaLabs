@@ -14,9 +14,9 @@ public class Validator
 		}
 	}
 
-	public static boolean isStringValid(String string)
+	public static boolean isStringValid(String string, int maxLen)
 	{
-		if (string.isEmpty() || string.length() > 256)
+		if (string.isEmpty() || string.length() > maxLen)
 		{
 			return false;
 		}

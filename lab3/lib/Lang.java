@@ -86,16 +86,18 @@ public class Lang
 			2. Посмотреть схему кинозала
 			3. Создать
 			4. Удалить
+			5. Добавить кресла по шаблону в кинозал
 			
 			0. Выйти в меню выбора команд
 			"""
 		);
 		this.messageList.put("APPLICATION_GET_CINEMAHALL_CINEMA_ID", "Введите номер кинотеатра, для которого хотите увидеть список кинозалов.");
-		this.messageList.put("APPLICATION_GET_CINEMAHALL_ID", "Введите номер кинозала, для которого хотите увидеть схему.");
+		this.messageList.put("APPLICATION_GET_CINEMAHALL_ID_TO_PRINT_SCHEME", "Введите номер кинозала, для которого хотите увидеть схему.");
+		this.messageList.put("APPLICATION_GET_CINEMAHALL_ID_TO_ADD_ARMHAIRS", "Введите номер кинозала, в который хотите добавить кресла.");
 		this.messageList.put("APPLICATION_GET_CINEMAHALL_EMPTY_CINEMA_LIST", "Для создания нового кинозала необходимо, чтобы был создан хотя бы один кинотеатр.");
 		this.messageList.put("APPLICATION_GET_CINEMAHALL_TITLE", "Введите название кинозала.");
 		this.messageList.put("APPLICATION_GET_CINEMAHALL_ROW_COUNT", "Введите количество рядов кинозала.");
-		this.messageList.put("APPLICATION_GET_CINEMAHALL_ROW_COUNT_NOT_VALID", "Введите количество рядов кинозала не может быть равным нулю.");
+		this.messageList.put("APPLICATION_GET_CINEMAHALL_ROW_COUNT_NOT_VALID", "Количество рядов кинозала не может быть равным нулю.");
 		this.messageList.put("APPLICATION_GET_CINEMAHALL_CINEMA_ID_TO_ADD", "Введите номер кинотеатра, в который хотите добавить этот кинозал.");
 		this.messageList.put("APPLICATION_GET_CINEMAHALL_INDEX_TO_DELETE", "Введите номер кинозала, который хотите удалить.");
 
@@ -119,13 +121,35 @@ public class Lang
 		this.messageList.put("APPLICATION_ADMIN_FILM_SESSION_COMMAND_LIST",
 				"""
 				Доступные команды для сеансов:
-				1. Посмотреть текущий список сеансов 
+				1. Посмотреть текущий список сеансов
 				2. Создать
 				3. Удалить
 				
 				0. Выйти в меню выбора команд
 				"""
 		);
+		this.messageList.put("APPLICATION_FILM_SESSION_LIST", "Текущий список сеансов:");
+
+		this.messageList.put("APPLICATION_ADMIN_ARMCHAIR_COMMAND_LIST",
+			"""
+			Доступные команды для кресел:
+			1. Посмотреть текущий список шаблонов
+			2. Создать
+			3. Удалить
+			
+			0. Выйти в меню выбора команд
+			"""
+		);
+		this.messageList.put("APPLICATION_ARMCHAIR_LIST", "Текущий список шаблонов кресел:");
+		this.messageList.put("APPLICATION_GET_ARMCHAIR_TITLE", "Введите название кресла.");
+		this.messageList.put("APPLICATION_GET_ARMCHAIR_DESCRIPTION", "Введите описание кресла.");
+		this.messageList.put("APPLICATION_GET_ARMCHAIR_TYPE", "Введите тип кинотеатра (до 5 символов), который будет выводиться при показе схемы кинозала.");
+		this.messageList.put("APPLICATION_GET_ARMCHAIR_INDEX_TO_DELETE", "Введите номер шаблона, который хотите удалить.");
+		this.messageList.put("APPLICATION_GET_ARMCHAIR_INDEX_TO_ADD_TO_CINEMAHALL", "Введите номер шаблона, по которому хотите добавить кресла.");
+		this.messageList.put("APPLICATION_GET_ARMCHAIR_ROW_TO_ADD_TO_CINEMAHALL", "Введите номер ряда. Количество рядов в выбранном кинозале: ");
+		this.messageList.put("APPLICATION_GET_ARMCHAIR_COUNT_TO_ADD_TO_CINEMAHALL", "Введите количество кресел, которое хотите добавить.");
+		this.messageList.put("APPLICATION_GET_ARMCHAIR_COUNT_NOT_VALID", "Количество кресел не может быть равным нулю.");
+		this.messageList.put("APPLICATION_ARMCHAIR_LIST_IS_EMPTY", "Список шаблонов кресел пуст.");
 	}
 
 	public String getMessage(String messageCode)

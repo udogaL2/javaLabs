@@ -11,6 +11,7 @@ import static lib.Parser.getUserStringWhileIsNotValid;
 import static lib.action.CinemaAdminAction.*;
 import static lib.action.CinemaHallAdminAction.*;
 import static lib.action.FilmAdminAction.*;
+import static lib.action.ArmchairAdminAction.*;
 
 public class Application
 {
@@ -66,7 +67,7 @@ public class Application
 				case (2):
 					if (isAdmin)
 					{
-						startCinemaHallAdminAction(cinemaList);
+						startCinemaHallAdminAction(cinemaList, armchairTemplateList);
 					}
 
 					break;
@@ -83,6 +84,10 @@ public class Application
 					break;
 
 				case (5):
+					if (isAdmin)
+					{
+						startArmchairAdminAction(armchairTemplateList);
+					}
 					break;
 
 				case (0):

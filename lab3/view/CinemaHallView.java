@@ -35,15 +35,18 @@ public class CinemaHallView
 	{
 		StringBuilder result = new StringBuilder();
 
-		boolean isNotEmpty = true;
+		boolean isNotEmpty = false;
 
+		int row = 0;
 		for (ArrayList<Armchair> armchairList: cinemaHall.getSeatsMatrix())
 		{
+			row += 1;
+			result.append(row).append(". ");
 			for (Armchair armchair: armchairList)
 			{
-				result.append(armchair.getType()).append(' ');
+				result.append(armchair.getNumber()).append(") ").append(armchair.getType()).append(' ');
 			}
-			isNotEmpty = isNotEmpty && !armchairList.isEmpty();
+			isNotEmpty = isNotEmpty || !armchairList.isEmpty();
 			result.append('\n');
 		}
 

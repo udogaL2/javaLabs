@@ -18,7 +18,6 @@ public final class Film
 		return title;
 	}
 
-
 	public String getDescription()
 	{
 		return description;

@@ -5,13 +5,13 @@ import java.util.Date;
 public class FilmSession
 {
 	private int filmIndex;
-	private int cinemaHallIndex;
+	private CinemaHall cinemaHall;
 	private Date startTime;
 
-	public FilmSession(int filmIndex, int cinemaHallIndex, Date startTime)
+	public FilmSession(int filmIndex, CinemaHall cinemaHall, Date startTime)
 	{
 		this.filmIndex = filmIndex;
-		this.cinemaHallIndex = cinemaHallIndex;
+		this.cinemaHall = cinemaHall;
 		this.startTime = startTime;
 	}
 
@@ -35,13 +35,13 @@ public class FilmSession
 		this.filmIndex = filmIndex;
 	}
 
-	public int getCinemaHallIndex()
+	public CinemaHall getCinemaHallIndex()
 	{
-		return cinemaHallIndex;
+		return cinemaHall;
 	}
 
-	public void setCinemaHallIndex(int cinemaHallIndex)
+	public void setCinemaHallIndex(CinemaHall cinemaHall)
 	{
-		this.cinemaHallIndex = cinemaHallIndex;
+		this.cinemaHall = cinemaHall;
 	}
 }
