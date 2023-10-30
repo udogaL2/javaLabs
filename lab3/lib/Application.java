@@ -88,6 +88,7 @@ public class Application
 					{
 						startArmchairAdminAction(armchairTemplateList);
 					}
+
 					break;
 
 				case (0):

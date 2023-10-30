@@ -1,14 +1,15 @@
 package controller;
 
 import model.CinemaHall;
+import model.Film;
 import model.FilmSession;
 
 import java.util.Date;
 
 public class FilmSessionController
 {
-    public static FilmSession createNewFilmSession(int filmIndex, Date startTime, CinemaHall cinemaHallIndex)
+    public static FilmSession createNewFilmSession(Film film, Date startTime, CinemaHall cinemaHallIndex)
     {
-        return new FilmSession(filmIndex, cinemaHallIndex, startTime);
+        return new FilmSession(film, cinemaHallIndex, startTime);
     }
 }

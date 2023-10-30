@@ -1,6 +1,10 @@
 package lib;
 
-import java.util.Objects;
+import static config.Config.DATE_FORMAT;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static lib.Lang.print;
 import static lib.Application.*;
@@ -32,4 +36,11 @@ public class Parser
             print(lang.getMessage("APPLICATION_COMMAND_IS_NOT_VALID"));
         }
     }
+
+	public static String parseDateToString(Date date)
+	{
+		DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+
+		return dateFormat.format(date);
+	}
 }

@@ -4,13 +4,13 @@ import java.util.Date;
 
 public class FilmSession
 {
-	private int filmIndex;
+	private Film film;
 	private CinemaHall cinemaHall;
 	private Date startTime;
 
-	public FilmSession(int filmIndex, CinemaHall cinemaHall, Date startTime)
+	public FilmSession(Film film, CinemaHall cinemaHall, Date startTime)
 	{
-		this.filmIndex = filmIndex;
+		this.film = film;
 		this.cinemaHall = cinemaHall;
 		this.startTime = startTime;
 	}
@@ -25,14 +25,14 @@ public class FilmSession
 		this.startTime = startTime;
 	}
 
-	public int getFilmIndex()
+	public Film getFilm()
 	{
-		return filmIndex;
+		return film;
 	}
 
-	public void setFilmIndex(int filmIndex)
+	public void setFilm(Film film)
 	{
-		this.filmIndex = filmIndex;
+		this.film = film;
 	}
 
 	public CinemaHall getCinemaHallIndex()

@@ -38,7 +38,6 @@ public class FilmAdminAction
 		}
 	}
 
-
 	public static void printFilmList(ArrayList<Film> filmList)
 	{
 		print(lang.getMessage("APPLICATION_FILM_LIST"));

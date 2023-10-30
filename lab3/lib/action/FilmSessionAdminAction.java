@@ -1,8 +1,10 @@
 package lib.action;
 
 import lib.Parser;
+import model.Film;
 import model.FilmSession;
 import view.CinemaView;
+import static view.FilmSessionView.*;
 
 import java.util.ArrayList;
 
@@ -32,5 +34,18 @@ public class FilmSessionAdminAction
 			default:
 				print(lang.getMessage("APPLICATION_COMMAND_NOT_FOUND"));
 		}
+	}
+
+	public static void printFilmSessionList(ArrayList<FilmSession> filmSessionList)
+	{
+		print(lang.getMessage("APPLICATION_FILM_SESSION_LIST"));
+
+		if (filmSessionList.isEmpty())
+		{
+			print(lang.getMessage("APPLICATION_EMPTY_LIST"));
+			return;
+		}
+
+		print(prepareFilmSessionListToPrint(filmSessionList));
 	}
 }
