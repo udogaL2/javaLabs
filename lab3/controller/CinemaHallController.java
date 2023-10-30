@@ -32,4 +32,9 @@ public class CinemaHallController
 			armchairList.add(newArmchair);
 		}
 	}
+
+	static public void deleteArmchairRow(CinemaHall cinemaHall, int rowIndex)
+	{
+		cinemaHall.getSeatsMatrix().set(rowIndex, new ArrayList<>());
+	}
 }

@@ -87,6 +87,7 @@ public class Lang
 			3. Создать
 			4. Удалить
 			5. Добавить кресла по шаблону в кинозал
+			6. Очистить ряд кресел
 			
 			0. Выйти в меню выбора команд
 			"""
@@ -102,14 +103,14 @@ public class Lang
 		this.messageList.put("APPLICATION_GET_CINEMAHALL_INDEX_TO_DELETE", "Введите номер кинозала, который хотите удалить.");
 
 		this.messageList.put("APPLICATION_ADMIN_FILM_COMMAND_LIST",
-				"""
-				Доступные команды для фильмов:
-				1. Посмотреть текущий список фильмов
-				2. Создать
-				3. Удалить
-				
-				0. Выйти в меню выбора команд
-				"""
+			"""
+			Доступные команды для фильмов:
+			1. Посмотреть текущий список фильмов
+			2. Создать
+			3. Удалить
+			
+			0. Выйти в меню выбора команд
+			"""
 		);
 		this.messageList.put("APPLICATION_FILM_LIST", "Текущий список фильмов:");
 		this.messageList.put("APPLICATION_FILM_GET_TITLE", "Введите название фильма.");
@@ -119,14 +120,14 @@ public class Lang
 		this.messageList.put("APPLICATION_GET_FILM_INDEX_TO_DELETE", "Введите номер фильма, который хотите удалить.");
 
 		this.messageList.put("APPLICATION_ADMIN_FILM_SESSION_COMMAND_LIST",
-				"""
-				Доступные команды для сеансов:
-				1. Посмотреть текущий список сеансов
-				2. Создать
-				3. Удалить
-				
-				0. Выйти в меню выбора команд
-				"""
+			"""
+			Доступные команды для сеансов:
+			1. Посмотреть текущий список сеансов
+			2. Создать
+			3. Удалить
+			
+			0. Выйти в меню выбора команд
+			"""
 		);
 		this.messageList.put("APPLICATION_FILM_SESSION_LIST", "Текущий список сеансов:");
 
@@ -150,6 +151,8 @@ public class Lang
 		this.messageList.put("APPLICATION_GET_ARMCHAIR_COUNT_TO_ADD_TO_CINEMAHALL", "Введите количество кресел, которое хотите добавить.");
 		this.messageList.put("APPLICATION_GET_ARMCHAIR_COUNT_NOT_VALID", "Количество кресел не может быть равным нулю.");
 		this.messageList.put("APPLICATION_ARMCHAIR_LIST_IS_EMPTY", "Список шаблонов кресел пуст.");
+		this.messageList.put("APPLICATION_GET_ARMCHAIR_ROW_TO_DELETE", "Введите номер ряда, который нужно очистить. Количество рядов в выбранном кинозале: ");
+
 	}
 
 	public String getMessage(String messageCode)

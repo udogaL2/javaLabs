@@ -27,19 +27,23 @@ public class CinemaHallAdminAction
 		switch (Parser.parseRawStringToInt(command))
 		{
 			case (1):
-				printCinemaHallList(cinemaList);
+				printCinemaHallListAction(cinemaList);
 				return;
 			case (2):
-				printCinemaHallSchemeAction(cinemaList);
+				ArrayList<CinemaHall> cinemaHallList = printCinemaHallListAction(cinemaList);
+				printCinemaHallSchemeAction(cinemaHallList);
 				return;
 			case (3):
-				createNewCinemaHall(cinemaList);
+				createNewCinemaHallAction(cinemaList);
 				return;
 			case (4):
 				deleteCinemaHallAction(cinemaList);
 				return;
 			case (5):
 				addArmchairToCinemaHallAction(cinemaList, armchairTemplateList);
+				return;
+			case (6):
+				deleteArmchairInRowAction(cinemaList);
 				return;
 			case (0):
 				return;
@@ -48,7 +52,7 @@ public class CinemaHallAdminAction
 		}
 	}
 
-	private static ArrayList<CinemaHall> printCinemaHallList(ArrayList<Cinema> cinemaList)
+	private static ArrayList<CinemaHall> printCinemaHallListAction(ArrayList<Cinema> cinemaList)
 	{
 		printCinemaList(cinemaList);
 
@@ -79,43 +83,36 @@ public class CinemaHallAdminAction
 		return cinemaHallList;
 	}
 
-	private static void printCinemaHallSchemeAction(ArrayList<Cinema> cinemaList)
+	private static int printCinemaHallSchemeAction(ArrayList<CinemaHall> cinemaHallList)
 	{
-		if (cinemaList.isEmpty())
-		{
-			print(lang.getMessage("APPLICATION_GET_CINEMAHALL_EMPTY_CINEMA_LIST"));
-			return;
-		}
-
-		ArrayList<CinemaHall> cinemaHallList = printCinemaHallList(cinemaList);
-
 		if (cinemaHallList.isEmpty())
 		{
-			return;
+			return -1;
 		}
 
 		print(lang.getMessage("APPLICATION_GET_CINEMAHALL_ID_TO_PRINT_SCHEME"));
 
 		int index = Parser.parseRawStringToInt(getUserStringWhileIsNotValid(true)) - 1;
 
-		if (index < 0 || index >= cinemaList.size())
+		if (index < 0 || index >= cinemaHallList.size())
 		{
 			print(lang.getMessage("APPLICATION_INDEX_IS_NOT_VALID"));
-			return;
+			return -1;
 		}
 
 		String scheme = CinemaHallView.prepareCinemaHallScheme(cinemaHallList.get(index));
 		if (!scheme.isEmpty())
 		{
 			print(scheme);
-			return;
+			return index;
 		}
 
 		print(lang.getMessage("APPLICATION_EMPTY_LIST"));
+		return index;
 	}
 
 
-	private static void createNewCinemaHall(ArrayList<Cinema> cinemaList)
+	private static void createNewCinemaHallAction(ArrayList<Cinema> cinemaList)
 	{
 		if (!isAdmin)
 		{
@@ -167,7 +164,7 @@ public class CinemaHallAdminAction
 			return;
 		}
 
-		ArrayList<CinemaHall> cinemaHallList = printCinemaHallList(cinemaList);
+		ArrayList<CinemaHall> cinemaHallList = printCinemaHallListAction(cinemaList);
 
 		if (cinemaHallList.isEmpty())
 		{
@@ -208,20 +205,17 @@ public class CinemaHallAdminAction
 			return;
 		}
 
-		ArrayList<CinemaHall> cinemaHallList = printCinemaHallList(cinemaList);
+		ArrayList<CinemaHall> cinemaHallList = printCinemaHallListAction(cinemaList);
 
 		if (cinemaHallList.isEmpty())
 		{
 			return;
 		}
 
-		print(lang.getMessage("APPLICATION_GET_CINEMAHALL_ID_TO_ADD_ARMHAIRS"));
+		int cinemaHallIndex = printCinemaHallSchemeAction(cinemaHallList);
 
-		int cinemaHallIndex = Parser.parseRawStringToInt(getUserStringWhileIsNotValid(true)) - 1;
-
-		if (cinemaHallIndex < 0 || cinemaHallIndex >= cinemaList.size())
+		if (cinemaHallIndex == -1)
 		{
-			print(lang.getMessage("APPLICATION_INDEX_IS_NOT_VALID"));
 			return;
 		}
 
@@ -260,5 +254,42 @@ public class CinemaHallAdminAction
 		}
 
 		CinemaHallController.addArmchairToCinemaHall(cinemaHall, row, armchairTemplateList.get(armchairIndex), count);
+	}
+
+	private static void deleteArmchairInRowAction(ArrayList<Cinema> cinemaList)
+	{
+		if (!isAdmin)
+		{
+			return;
+		}
+
+		if (cinemaList.isEmpty())
+		{
+			print(lang.getMessage("APPLICATION_EMPTY_LIST"));
+			return;
+		}
+
+		ArrayList<CinemaHall> cinemaHallList = printCinemaHallListAction(cinemaList);
+
+		int cinemaHallIndex = printCinemaHallSchemeAction(cinemaHallList);
+
+		if (cinemaHallIndex == -1)
+		{
+			return;
+		}
+
+		CinemaHall cinemaHall = cinemaHallList.get(cinemaHallIndex);
+
+		print(lang.getMessage("APPLICATION_GET_ARMCHAIR_ROW_TO_DELETE") + cinemaHall.getRowCount() + '.');
+
+		int row = Parser.parseRawStringToInt(getUserStringWhileIsNotValid(true)) - 1;
+
+		if (row < 0 || row >= cinemaHall.getRowCount())
+		{
+			print(lang.getMessage("APPLICATION_INDEX_IS_NOT_VALID"));
+			return;
+		}
+
+		CinemaHallController.deleteArmchairRow(cinemaHall, row);
 	}
 }
