@@ -1,5 +1,9 @@
 package lib;
 
+import java.util.regex.Pattern;
+
+import static config.Config.DATE_PATTERN;
+
 public class Validator
 {
 	public static int isNumeric(String string)
@@ -22,5 +26,10 @@ public class Validator
 		}
 
 		return true;
+	}
+
+	public static boolean isRowDateStringValid(String rowDateString)
+	{
+		return Pattern.matches(DATE_PATTERN, rowDateString);
 	}
 }

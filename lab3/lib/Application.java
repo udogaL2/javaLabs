@@ -12,6 +12,7 @@ import static lib.action.CinemaAdminAction.*;
 import static lib.action.CinemaHallAdminAction.*;
 import static lib.action.FilmAdminAction.*;
 import static lib.action.ArmchairAdminAction.*;
+import static lib.action.FilmSessionAdminAction.*;
 
 public class Application
 {
@@ -81,6 +82,11 @@ public class Application
 					break;
 
 				case (4):
+					if (isAdmin)
+					{
+						startFilmSessionAdminAction(filmSessionList, filmList, cinemaList);
+					}
+
 					break;
 
 				case (5):
@@ -93,10 +99,12 @@ public class Application
 
 				case (0):
 					startMessage();
+
 					break;
 
 				default:
 					print(lang.getMessage("APPLICATION_COMMAND_NOT_FOUND"));
+
 					break;
 			}
 		}

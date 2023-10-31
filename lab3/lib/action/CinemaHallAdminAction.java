@@ -52,7 +52,7 @@ public class CinemaHallAdminAction
 		}
 	}
 
-	private static ArrayList<CinemaHall> printCinemaHallListAction(ArrayList<Cinema> cinemaList)
+	public static ArrayList<CinemaHall> printCinemaHallListAction(ArrayList<Cinema> cinemaList)
 	{
 		printCinemaList(cinemaList);
 

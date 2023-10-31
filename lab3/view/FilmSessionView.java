@@ -10,7 +10,7 @@ public class FilmSessionView
 {
 	public static String prepareFilmSessionToPrint(FilmSession filmSession)
 	{
-		return FilmView.prepareFilmToPrint(filmSession.getFilm()) + " ( " + Parser.parseDateToString(filmSession.getStartTime()) + " )";
+		return FilmView.prepareFilmToPrint(filmSession.getFilm()) + " (" + Parser.parseDateToString(filmSession.getStartTime()) + ")";
 	}
 
 	public static String prepareFilmSessionListToPrint(ArrayList<FilmSession> filmSessionList)
