@@ -36,6 +36,11 @@ public class CinemaHall
 		return seatsMatrix;
 	}
 
+	public void setSeatsMatrix(ArrayList<ArrayList<Armchair>> seatsMatrix)
+	{
+		this.seatsMatrix = seatsMatrix;
+	}
+
 	public void setSeat(int row, Armchair armchair)
 	{
 		this.seatsMatrix.get(row).add(armchair);
@@ -44,6 +49,11 @@ public class CinemaHall
 	public ArrayList<FilmSession> getFilmSessionList()
 	{
 		return filmSessionList;
+	}
+
+	public void setFilmSessionList(ArrayList<FilmSession> filmSessionList)
+	{
+		this.filmSessionList = filmSessionList;
 	}
 
 	public void addFilmSession(FilmSession filmSessionList)

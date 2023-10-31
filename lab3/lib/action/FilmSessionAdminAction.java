@@ -9,6 +9,7 @@ import model.FilmSession;
 import java.util.ArrayList;
 import java.util.Date;
 
+import static controller.FilmSessionController.*;
 import static lib.Application.isAdmin;
 import static lib.Application.lang;
 import static lib.Lang.print;
@@ -105,6 +106,6 @@ public class FilmSessionAdminAction
 
 		Date date = parseStringToDate(rowDate);
 
-		filmSessionList.add(new FilmSession(filmList.get(filmIndex), cinemaHallList.get(cinemaHallIndex), date));
+		filmSessionList.add(createNewFilmSession(filmList.get(filmIndex), date, cinemaHallList.get(cinemaHallIndex)));
 	}
 }
