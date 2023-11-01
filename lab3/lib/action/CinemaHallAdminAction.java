@@ -2,13 +2,14 @@ package lib.action;
 
 import controller.CinemaHallController;
 import lib.Parser;
-import model.Armchair;
-import model.Cinema;
 import model.CinemaHall;
 import view.CinemaHallView;
 
 import java.util.ArrayList;
 
+import static controller.FilmSessionController.deleteAllFimlSessionsInCinemaHall;
+import static lib.Application.cinemaList;
+import static lib.Application.armchairTemplateList;
 import static lib.Application.isAdmin;
 import static lib.Application.lang;
 import static lib.Lang.print;
@@ -18,7 +19,7 @@ import static lib.action.ArmchairAdminAction.printArmchairTemplateList;
 
 public class CinemaHallAdminAction
 {
-	public static void startCinemaHallAdminAction(ArrayList<Cinema> cinemaList, ArrayList<Armchair> armchairTemplateList)
+	public static void startCinemaHallAdminAction()
 	{
 		print(lang.getMessage("APPLICATION_ADMIN_CINEMAHALL_COMMAND_LIST"));
 
@@ -27,23 +28,23 @@ public class CinemaHallAdminAction
 		switch (Parser.parseRawStringToInt(command))
 		{
 			case (1):
-				printCinemaHallListAction(cinemaList);
+				printCinemaHallListAction();
 				return;
 			case (2):
-				ArrayList<CinemaHall> cinemaHallList = printCinemaHallListAction(cinemaList);
+				ArrayList<CinemaHall> cinemaHallList = printCinemaHallListAction();
 				printCinemaHallSchemeAction(cinemaHallList);
 				return;
 			case (3):
-				createNewCinemaHallAction(cinemaList);
+				createNewCinemaHallAction();
 				return;
 			case (4):
-				deleteCinemaHallAction(cinemaList);
+				deleteCinemaHallAction();
 				return;
 			case (5):
-				addArmchairToCinemaHallAction(cinemaList, armchairTemplateList);
+				addArmchairToCinemaHallAction();
 				return;
 			case (6):
-				deleteArmchairInRowAction(cinemaList);
+				deleteArmchairInRowAction();
 				return;
 			case (0):
 				return;
@@ -52,9 +53,9 @@ public class CinemaHallAdminAction
 		}
 	}
 
-	public static ArrayList<CinemaHall> printCinemaHallListAction(ArrayList<Cinema> cinemaList)
+	public static ArrayList<CinemaHall> printCinemaHallListAction()
 	{
-		printCinemaList(cinemaList);
+		printCinemaList();
 
 		if (cinemaList.isEmpty())
 		{
@@ -112,7 +113,7 @@ public class CinemaHallAdminAction
 	}
 
 
-	private static void createNewCinemaHallAction(ArrayList<Cinema> cinemaList)
+	private static void createNewCinemaHallAction()
 	{
 		if (!isAdmin)
 		{
@@ -137,7 +138,7 @@ public class CinemaHallAdminAction
 			return;
 		}
 
-		printCinemaList(cinemaList);
+		printCinemaList();
 
 		print(lang.getMessage("APPLICATION_GET_CINEMAHALL_CINEMA_ID_TO_ADD"));
 		int index = Parser.parseRawStringToInt(getUserStringWhileIsNotValid(true)) - 1;
@@ -151,7 +152,7 @@ public class CinemaHallAdminAction
 		cinemaList.get(index).addCinemaHall(new CinemaHall(title, rowCount));
 	}
 
-	private static void deleteCinemaHallAction(ArrayList<Cinema> cinemaList)
+	private static void deleteCinemaHallAction()
 	{
 		if (!isAdmin)
 		{
@@ -164,7 +165,7 @@ public class CinemaHallAdminAction
 			return;
 		}
 
-		ArrayList<CinemaHall> cinemaHallList = printCinemaHallListAction(cinemaList);
+		ArrayList<CinemaHall> cinemaHallList = printCinemaHallListAction();
 
 		if (cinemaHallList.isEmpty())
 		{
@@ -181,12 +182,12 @@ public class CinemaHallAdminAction
 			return;
 		}
 
-		cinemaHallList.remove(index);
+		deleteAllFimlSessionsInCinemaHall(cinemaHallList.get(index).getId());
 
-		//TODO: добавить удаление сеансов в удаляемом кинозале
+		cinemaHallList.remove(index);
 	}
 
-	private static void addArmchairToCinemaHallAction(ArrayList<Cinema> cinemaList, ArrayList<Armchair> armchairTemplateList)
+	private static void addArmchairToCinemaHallAction()
 	{
 		if (!isAdmin)
 		{
@@ -205,7 +206,7 @@ public class CinemaHallAdminAction
 			return;
 		}
 
-		ArrayList<CinemaHall> cinemaHallList = printCinemaHallListAction(cinemaList);
+		ArrayList<CinemaHall> cinemaHallList = printCinemaHallListAction();
 
 		if (cinemaHallList.isEmpty())
 		{
@@ -231,7 +232,7 @@ public class CinemaHallAdminAction
 			return;
 		}
 
-		printArmchairTemplateList(armchairTemplateList);
+		printArmchairTemplateList();
 
 		print(lang.getMessage("APPLICATION_GET_ARMCHAIR_INDEX_TO_ADD_TO_CINEMAHALL"));
 
@@ -256,7 +257,7 @@ public class CinemaHallAdminAction
 		CinemaHallController.addArmchairToCinemaHall(cinemaHall, row, armchairTemplateList.get(armchairIndex), count);
 	}
 
-	private static void deleteArmchairInRowAction(ArrayList<Cinema> cinemaList)
+	private static void deleteArmchairInRowAction()
 	{
 		if (!isAdmin)
 		{
@@ -269,7 +270,7 @@ public class CinemaHallAdminAction
 			return;
 		}
 
-		ArrayList<CinemaHall> cinemaHallList = printCinemaHallListAction(cinemaList);
+		ArrayList<CinemaHall> cinemaHallList = printCinemaHallListAction();
 
 		int cinemaHallIndex = printCinemaHallSchemeAction(cinemaHallList);
 

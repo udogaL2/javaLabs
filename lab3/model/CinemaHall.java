@@ -2,8 +2,11 @@ package model;
 
 import java.util.ArrayList;
 
-public class CinemaHall
+public final class CinemaHall
 {
+	private static int autoincrement = 0;
+
+	private int id;
 	private String title;
 	private int rowCount;
 	private ArrayList<ArrayList<Armchair>> seatsMatrix;
@@ -11,6 +14,20 @@ public class CinemaHall
 
 	public CinemaHall(String title, int rowCount)
 	{
+		id = autoincrement++;
+		this.title = title;
+		this.rowCount = rowCount;
+		this.seatsMatrix = new ArrayList<>(rowCount);
+		for (int i = 0; i < rowCount; i++)
+		{
+			this.seatsMatrix.add(new ArrayList<>());
+		}
+		this.filmSessionList = new ArrayList<>();
+	}
+
+	public CinemaHall(int id, String title, int rowCount)
+	{
+		this.id = id;
 		this.title = title;
 		this.rowCount = rowCount;
 		this.seatsMatrix = new ArrayList<>(rowCount);
@@ -69,5 +86,10 @@ public class CinemaHall
 	public void setFreeSeat(int row, int seat)
 	{
 		this.seatsMatrix.get(row).get(seat).setStatus(false);
+	}
+
+	public int getId()
+	{
+		return id;
 	}
 }

@@ -6,6 +6,7 @@ import view.CinemaView;
 
 import java.util.ArrayList;
 
+import static lib.Application.cinemaList;
 import static lib.Application.isAdmin;
 import static lib.Application.lang;
 import static lib.Lang.print;
@@ -13,7 +14,7 @@ import static lib.Parser.getUserStringWhileIsNotValid;
 
 public class CinemaAdminAction
 {
-	public static void startCinemaAdminAction(ArrayList<Cinema> cinemaList)
+	public static void startCinemaAdminAction()
 	{
 		print(lang.getMessage("APPLICATION_ADMIN_CINEMA_COMMAND_LIST"));
 
@@ -22,14 +23,14 @@ public class CinemaAdminAction
 		switch (Parser.parseRawStringToInt(command))
 		{
 			case (1):
-				printCinemaList(cinemaList);
+				printCinemaList();
 				return;
 			case (2):
-				createNewCinemaAction(cinemaList);
+				createNewCinemaAction();
 				return;
 			case (3):
-				printCinemaList(cinemaList);
-				deleteCinemaAction(cinemaList);
+				printCinemaList();
+				deleteCinemaAction();
 				return;
 			case (0):
 				return;
@@ -38,7 +39,7 @@ public class CinemaAdminAction
 		}
 	}
 
-	public static void printCinemaList(ArrayList<Cinema> cinemaList)
+	public static void printCinemaList()
 	{
 		print(lang.getMessage("APPLICATION_CINEMA_LIST"));
 
@@ -51,7 +52,7 @@ public class CinemaAdminAction
 		print(CinemaView.prepareCinemaListToPrint(cinemaList));
 	}
 
-	private static void createNewCinemaAction(ArrayList<Cinema> cinemaList)
+	private static void createNewCinemaAction()
 	{
 		if (!isAdmin)
 		{
@@ -64,7 +65,7 @@ public class CinemaAdminAction
 		cinemaList.add(new Cinema(title));
 	}
 
-	private static void deleteCinemaAction(ArrayList<Cinema> cinemaList)
+	private static void deleteCinemaAction()
 	{
 		if (!isAdmin)
 		{

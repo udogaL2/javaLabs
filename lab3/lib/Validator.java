@@ -30,6 +30,7 @@ public class Validator
 
 	public static boolean isRowDateStringValid(String rowDateString)
 	{
+
 		return Pattern.matches(DATE_PATTERN, rowDateString);
 	}
 }

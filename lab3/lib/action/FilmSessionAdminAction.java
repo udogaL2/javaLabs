@@ -6,10 +6,14 @@ import model.CinemaHall;
 import model.Film;
 import model.FilmSession;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 
 import static controller.FilmSessionController.*;
+import static lib.Application.filmSessionList;
+import static lib.Application.filmList;
+import static lib.Application.cinemaList;
 import static lib.Application.isAdmin;
 import static lib.Application.lang;
 import static lib.Lang.print;
@@ -22,7 +26,7 @@ import static lib.action.CinemaHallAdminAction.printCinemaHallListAction;
 
 public class FilmSessionAdminAction
 {
-	public static void startFilmSessionAdminAction(ArrayList<FilmSession> filmSessionList, ArrayList<Film> filmList, ArrayList<Cinema> cinemaList)
+	public static void startFilmSessionAdminAction()
 	{
 		print(lang.getMessage("APPLICATION_ADMIN_FILM_SESSION_COMMAND_LIST"));
 
@@ -31,12 +35,14 @@ public class FilmSessionAdminAction
 		switch (Parser.parseRawStringToInt(command))
 		{
 			case (1):
-				printFilmSessionListAction(filmSessionList);
+				printFilmSessionListAction();
 				return;
 			case (2):
-				addNewFilmSessionAction(filmSessionList, filmList, cinemaList);
+				addNewFilmSessionAction();
 				return;
 			case (3):
+				printFilmSessionListAction();
+				deleteFilmSessionAction();
 				return;
 			case (0):
 				return;
@@ -45,7 +51,7 @@ public class FilmSessionAdminAction
 		}
 	}
 
-	public static void printFilmSessionListAction(ArrayList<FilmSession> filmSessionList)
+	public static void printFilmSessionListAction()
 	{
 		print(lang.getMessage("APPLICATION_FILM_SESSION_LIST"));
 
@@ -58,14 +64,14 @@ public class FilmSessionAdminAction
 		print(prepareFilmSessionListToPrint(filmSessionList));
 	}
 
-	private static void addNewFilmSessionAction(ArrayList<FilmSession> filmSessionList, ArrayList<Film> filmList, ArrayList<Cinema> cinemaList)
+	private static void addNewFilmSessionAction()
 	{
 		if (!isAdmin)
 		{
 			return;
 		}
 
-		printFilmList(filmList);
+		printFilmList();
 
 		if (filmList.isEmpty())
 		{
@@ -82,13 +88,13 @@ public class FilmSessionAdminAction
 			return;
 		}
 
-		ArrayList<CinemaHall> cinemaHallList = printCinemaHallListAction(cinemaList);
+		ArrayList<CinemaHall> cinemaHallList = printCinemaHallListAction();
 
 		print(lang.getMessage("APPLICATION_FILM_SESSION_GET_CINEMAHALL_INDEX"));
 
 		int cinemaHallIndex = Parser.parseRawStringToInt(getUserStringWhileIsNotValid(true)) - 1;
 
-		if (cinemaHallIndex < 0 || cinemaHallIndex >= filmList.size())
+		if (cinemaHallIndex < 0 || cinemaHallIndex >= cinemaHallList.size())
 		{
 			print(lang.getMessage("APPLICATION_INDEX_IS_NOT_VALID"));
 			return;
@@ -106,6 +112,36 @@ public class FilmSessionAdminAction
 
 		Date date = parseStringToDate(rowDate);
 
+		if (date.before(new Date(System.currentTimeMillis())))
+		{
+			print(lang.getMessage("APPLICATION_FILM_SESSION_DATE_ERROR"));
+			return;
+		}
+
 		filmSessionList.add(createNewFilmSession(filmList.get(filmIndex), date, cinemaHallList.get(cinemaHallIndex)));
+	}
+
+	private static void deleteFilmSessionAction()
+	{
+		if (!isAdmin)
+		{
+			return;
+		}
+
+		if (filmSessionList.isEmpty())
+		{
+			return;
+		}
+
+		print(lang.getMessage("APPLICATION_GET_FILM_SESSION_INDEX_TO_DELETE"));
+		int index = Parser.parseRawStringToInt(getUserStringWhileIsNotValid(true)) - 1;
+
+		if (index >= 0 && index < filmSessionList.size())
+		{
+			filmSessionList.remove(index);
+			return;
+		}
+
+		print(lang.getMessage("APPLICATION_INDEX_IS_NOT_VALID"));
 	}
 }

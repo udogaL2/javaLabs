@@ -59,4 +59,33 @@ public class CinemaHallView
 			return "";
 		}
 	}
+
+	static public String prepareCinemaHallSchemeToUser(CinemaHall cinemaHall)
+	{
+		StringBuilder result = new StringBuilder();
+
+		boolean isNotEmpty = false;
+
+		int row = 0;
+		for (ArrayList<Armchair> armchairList: cinemaHall.getSeatsMatrix())
+		{
+			row += 1;
+			result.append(row).append(". ");
+			for (Armchair armchair: armchairList)
+			{
+				result.append(armchair.getNumber()).append(") ").append(armchair.getType()).append(' ');
+			}
+			isNotEmpty = isNotEmpty || !armchairList.isEmpty();
+			result.append('\n');
+		}
+
+		if (isNotEmpty)
+		{
+			return result.toString();
+		}
+		else
+		{
+			return "";
+		}
+	}
 }

@@ -4,8 +4,8 @@ import lib.Parser;
 import model.Film;
 import view.FilmView;
 
-import java.util.ArrayList;
-
+import static controller.FilmSessionController.deleteAllFimlSessionsWithFilm;
+import static lib.Application.filmList;
 import static lib.Application.isAdmin;
 import static lib.Application.lang;
 import static lib.Lang.print;
@@ -13,7 +13,7 @@ import static lib.Parser.getUserStringWhileIsNotValid;
 
 public class FilmAdminAction
 {
-	public static void startFilmAdminAction(ArrayList<Film> filmList)
+	public static void startFilmAdminAction()
 	{
 		print(lang.getMessage("APPLICATION_ADMIN_FILM_COMMAND_LIST"));
 
@@ -22,14 +22,14 @@ public class FilmAdminAction
 		switch (Parser.parseRawStringToInt(command))
 		{
 			case (1):
-				printFilmList(filmList);
+				printFilmList();
 				return;
 			case (2):
-				createNewFilmAction(filmList);
+				createNewFilmAction();
 				return;
 			case (3):
-				printFilmList(filmList);
-				deleteFilmAction(filmList);
+				printFilmList();
+				deleteFilmAction();
 				return;
 			case (0):
 				return;
@@ -38,7 +38,7 @@ public class FilmAdminAction
 		}
 	}
 
-	public static void printFilmList(ArrayList<Film> filmList)
+	public static void printFilmList()
 	{
 		print(lang.getMessage("APPLICATION_FILM_LIST"));
 
@@ -51,7 +51,7 @@ public class FilmAdminAction
 		print(FilmView.prepareFilmListToPrint(filmList));
 	}
 
-	private static void createNewFilmAction(ArrayList<Film> filmList)
+	private static void createNewFilmAction()
 	{
 		if (!isAdmin)
 		{
@@ -76,7 +76,7 @@ public class FilmAdminAction
 	}
 
 
-	private static void deleteFilmAction(ArrayList<Film> filmList)
+	private static void deleteFilmAction()
 	{
 		if (!isAdmin)
 		{
@@ -91,14 +91,15 @@ public class FilmAdminAction
 		print(lang.getMessage("APPLICATION_GET_FILM_INDEX_TO_DELETE"));
 		int index = Parser.parseRawStringToInt(getUserStringWhileIsNotValid(true)) - 1;
 
-		if (index >= 0 && index < filmList.size())
+		if (index < 0 || index >= filmList.size())
 		{
-			filmList.remove(index);
+			print(lang.getMessage("APPLICATION_INDEX_IS_NOT_VALID"));
+
 			return;
 		}
 
-		print(lang.getMessage("APPLICATION_INDEX_IS_NOT_VALID"));
+		deleteAllFimlSessionsWithFilm(filmList.get(index).getId());
 
-		//TODO: добавить удаление сеансов с удаляемом фильмом
+		filmList.remove(index);
 	}
 }

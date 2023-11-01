@@ -1,6 +1,6 @@
 package model;
 
-public class Armchair
+public final class Armchair
 {
 	private String title;
 	private int number;

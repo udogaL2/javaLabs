@@ -25,4 +25,17 @@ public class FilmSessionView
 
 		return result.toString();
 	}
+
+	public static String prepareFilmSessionToPrint(ArrayList<FilmSession> filmSessionList)
+	{
+		StringBuilder result = new StringBuilder();
+
+		for (int i = 0; i < filmSessionList.size(); i++)
+		{
+			FilmSession filmSession = filmSessionList.get(i);
+			result.append(i + 1).append(". ").append(prepareFilmSessionToPrint(filmSession)).append("\n");
+		}
+
+		return result.toString();
+	}
 }

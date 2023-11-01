@@ -75,6 +75,17 @@ public class Lang
 			"""
 		);
 
+		this.messageList.put("APPLICATION_FILM_COMMAND_LIST",
+			"""
+			Доступные команды для фильмов:
+			1. Посмотреть текущий список фильмов
+			2. Посмотреть ближайшие сеансы
+			3. Купить билет на фильм
+			
+			0. Выйти в меню выбора команд
+			"""
+		);
+
 		this.messageList.put("APPLICATION_GET_CINEMA_TITLE", "Введите название кинотеатра.");
 		this.messageList.put("APPLICATION_GET_CINEMA_INDEX_TO_DELETE", "Введите номер кинотеатра, который хотите удалить.");
 
@@ -134,8 +145,8 @@ public class Lang
 		this.messageList.put("APPLICATION_FILM_SESSION_GET_CINEMAHALL_INDEX", "Введите номер кинозала, в котором хотите создать сеанс.");
 		this.messageList.put("APPLICATION_FILM_SESSION_GET_DATE", "Введите дату проведения сеанса в формате \"ММ/дд/гггг ЧЧ:мм\" (месяц/день/год час:минуты).");
 		this.messageList.put("APPLICATION_FILM_SESSION_DATE_FORMAT_IS_NOT_VALID", "Дата проведения сеанса записана в неверном формате.");
-		this.messageList.put("APPLICATION_FILM_SESSION_", "Дата проведения сеанса записана в неверном формате.");
-		this.messageList.put("APPLICATION_FILM_SESSION_DATE_FORMAT_IS_NOT_VALID", "Дата проведения сеанса записана в неверном формате.");
+		this.messageList.put("APPLICATION_GET_FILM_SESSION_INDEX_TO_DELETE", "Введите номер сеанса, который хотите удалить.");
+		this.messageList.put("APPLICATION_FILM_SESSION_DATE_ERROR", "Дата не может быть позже текущего времени.");
 
 		this.messageList.put("APPLICATION_ADMIN_ARMCHAIR_COMMAND_LIST",
 			"""
@@ -158,6 +169,7 @@ public class Lang
 		this.messageList.put("APPLICATION_GET_ARMCHAIR_COUNT_NOT_VALID", "Количество кресел не может быть равным нулю.");
 		this.messageList.put("APPLICATION_ARMCHAIR_LIST_IS_EMPTY", "Список шаблонов кресел пуст.");
 		this.messageList.put("APPLICATION_GET_ARMCHAIR_ROW_TO_DELETE", "Введите номер ряда, который нужно очистить. Количество рядов в выбранном кинозале: ");
+
 	}
 
 	public String getMessage(String messageCode)

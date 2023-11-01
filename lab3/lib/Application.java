@@ -10,16 +10,17 @@ import static lib.Parser.getUserStringWhileIsNotValid;
 
 import static lib.action.CinemaAdminAction.*;
 import static lib.action.CinemaHallAdminAction.*;
+import static lib.action.FilmAction.*;
 import static lib.action.FilmAdminAction.*;
 import static lib.action.ArmchairAdminAction.*;
 import static lib.action.FilmSessionAdminAction.*;
 
 public class Application
 {
-	private final ArrayList<Cinema> cinemaList;
-	private final ArrayList<Armchair> armchairTemplateList;
-	private final ArrayList<FilmSession> filmSessionList;
-	private final ArrayList<Film> filmList;
+	public static final ArrayList<Cinema> cinemaList = new ArrayList<>();
+	public static final ArrayList<Armchair> armchairTemplateList = new ArrayList<>();
+	public static final ArrayList<FilmSession> filmSessionList = new ArrayList<>();
+	public static final ArrayList<Film> filmList = new ArrayList<>();
 
 	public static Lang lang;
 	public static Scanner inScanner;
@@ -28,10 +29,6 @@ public class Application
 
 	public Application()
 	{
-		cinemaList = new ArrayList<>();
-		armchairTemplateList = new ArrayList<>();
-		filmSessionList = new ArrayList<>();
-		filmList = new ArrayList<>();
 		running = true;
 		isAdmin = false;
 
@@ -48,7 +45,8 @@ public class Application
 			if (isAdmin)
 			{
 				print(lang.getMessage("APPLICATION_ADMIN_COMMAND_LIST"));
-			} else
+			}
+			else
 			{
 				print(lang.getMessage("APPLICATION_USER_COMMAND_LIST"));
 			}
@@ -60,23 +58,26 @@ public class Application
 				case (1):
 					if (isAdmin)
 					{
-						startCinemaAdminAction(cinemaList);
+						startCinemaAdminAction();
+						break;
 					}
+
+					startFilmAction();
 
 					break;
 
 				case (2):
 					if (isAdmin)
 					{
-						startCinemaHallAdminAction(cinemaList, armchairTemplateList);
+						startCinemaHallAdminAction();
 					}
 
 					break;
 
 				case (3):
-					if(isAdmin)
+					if (isAdmin)
 					{
-						startFilmAdminAction(filmList);
+						startFilmAdminAction();
 					}
 
 					break;
@@ -84,7 +85,7 @@ public class Application
 				case (4):
 					if (isAdmin)
 					{
-						startFilmSessionAdminAction(filmSessionList, filmList, cinemaList);
+						startFilmSessionAdminAction();
 					}
 
 					break;
@@ -92,7 +93,7 @@ public class Application
 				case (5):
 					if (isAdmin)
 					{
-						startArmchairAdminAction(armchairTemplateList);
+						startArmchairAdminAction();
 					}
 
 					break;

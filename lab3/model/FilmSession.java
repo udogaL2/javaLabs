@@ -2,7 +2,7 @@ package model;
 
 import java.util.Date;
 
-public class FilmSession
+public final class FilmSession
 {
 	private Film film;
 	private CinemaHall cinemaHall;
@@ -35,7 +35,7 @@ public class FilmSession
 		this.film = film;
 	}
 
-	public CinemaHall getCinemaHallIndex()
+	public CinemaHall getCinemaHall()
 	{
 		return cinemaHall;
 	}

@@ -7,6 +7,11 @@ import java.util.ArrayList;
 
 public class CinemaHallController
 {
+	static public CinemaHall createNewCinemaHall(int id, String title, int rowCount)
+	{
+		return new CinemaHall(id, title, rowCount);
+	}
+
 	static public CinemaHall createNewCinemaHall(String title, int rowCount)
 	{
 		return new CinemaHall(title, rowCount);
@@ -36,5 +41,15 @@ public class CinemaHallController
 	static public void deleteArmchairRow(CinemaHall cinemaHall, int rowIndex)
 	{
 		cinemaHall.getSeatsMatrix().set(rowIndex, new ArrayList<>());
+	}
+
+	static public CinemaHall getCopy(CinemaHall cinemaHall)
+	{
+		CinemaHall cinemaHallCopy = createNewCinemaHall(cinemaHall.getId(), cinemaHall.getTitle(), cinemaHall.getRowCount());
+
+		cinemaHallCopy.setSeatsMatrix(cinemaHall.getSeatsMatrix());
+		cinemaHallCopy.setFilmSessionList(cinemaHall.getFilmSessionList());
+
+		return cinemaHallCopy;
 	}
 }

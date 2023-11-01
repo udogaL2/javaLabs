@@ -1,5 +1,6 @@
 package lib.action;
 
+import controller.ArmchairController;
 import lib.Parser;
 import model.Armchair;
 import model.Cinema;
@@ -7,6 +8,7 @@ import view.ArmchairView;
 
 import java.util.ArrayList;
 
+import static lib.Application.armchairTemplateList;
 import static lib.Application.isAdmin;
 import static lib.Application.lang;
 import static lib.Lang.print;
@@ -14,7 +16,7 @@ import static lib.Parser.getUserStringWhileIsNotValid;
 
 public class ArmchairAdminAction
 {
-	public static void startArmchairAdminAction(ArrayList<Armchair> armchairTemplateList)
+	public static void startArmchairAdminAction()
 	{
 		print(lang.getMessage("APPLICATION_ADMIN_ARMCHAIR_COMMAND_LIST"));
 
@@ -23,14 +25,14 @@ public class ArmchairAdminAction
 		switch (Parser.parseRawStringToInt(command))
 		{
 			case (1):
-				printArmchairTemplateList(armchairTemplateList);
+				printArmchairTemplateList();
 				return;
 			case (2):
-				createNewArmchairTemplateAction(armchairTemplateList);
+				createNewArmchairTemplateAction();
 				return;
 			case (3):
-				printArmchairTemplateList(armchairTemplateList);
-				deleteArmchairTemplateAction(armchairTemplateList);
+				printArmchairTemplateList();
+				deleteArmchairTemplateAction();
 				return;
 			case (0):
 				return;
@@ -39,7 +41,7 @@ public class ArmchairAdminAction
 		}
 	}
 
-	public static void printArmchairTemplateList(ArrayList<Armchair> armchairTemplateList)
+	public static void printArmchairTemplateList()
 	{
 		print(lang.getMessage("APPLICATION_ARMCHAIR_LIST"));
 
@@ -52,7 +54,7 @@ public class ArmchairAdminAction
 		print(ArmchairView.prepareArmchairTemplateListToPrint(armchairTemplateList));
 	}
 
-	private static void createNewArmchairTemplateAction(ArrayList<Armchair> armchairTemplateList)
+	private static void createNewArmchairTemplateAction()
 	{
 		if (!isAdmin)
 		{
@@ -68,10 +70,10 @@ public class ArmchairAdminAction
 		print(lang.getMessage("APPLICATION_GET_ARMCHAIR_TYPE"));
 		String type = getUserStringWhileIsNotValid(false, 5);
 
-		armchairTemplateList.add(new Armchair(title, description, type));
+		armchairTemplateList.add(ArmchairController.createNewArmchair(title, description, type));
 	}
 
-	private static void deleteArmchairTemplateAction(ArrayList<Armchair> armchairTemplateList)
+	private static void deleteArmchairTemplateAction()
 	{
 		if (!isAdmin)
 		{

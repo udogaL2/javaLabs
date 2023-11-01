@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-public class Cinema
+public final class Cinema
 {
 	private String title;
 	private ArrayList<CinemaHall> cinemaHallList;
