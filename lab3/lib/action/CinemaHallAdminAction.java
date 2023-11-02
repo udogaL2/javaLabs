@@ -85,7 +85,7 @@ public class CinemaHallAdminAction
 		return cinemaHallList;
 	}
 
-	private static int printCinemaHallSchemeAction(ArrayList<CinemaHall> cinemaHallList)
+	public static int printCinemaHallSchemeAction(ArrayList<CinemaHall> cinemaHallList)
 	{
 		if (cinemaHallList.isEmpty())
 		{

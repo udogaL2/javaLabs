@@ -81,7 +81,11 @@ public class Application
 					if (isAdmin)
 					{
 						startFilmAdminAction();
+						break;
 					}
+
+					ArrayList<CinemaHall> cinemaHallList = printCinemaHallListAction();
+					printCinemaHallSchemeAction(cinemaHallList);
 
 					break;
 
