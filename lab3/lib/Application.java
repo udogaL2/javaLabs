@@ -70,7 +70,10 @@ public class Application
 					if (isAdmin)
 					{
 						startCinemaHallAdminAction();
+						break;
 					}
+
+					printCinemaList();
 
 					break;
 

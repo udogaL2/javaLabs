@@ -1,10 +1,12 @@
 package view;
 
 import model.Armchair;
-import model.Cinema;
 import model.CinemaHall;
 
 import java.util.ArrayList;
+
+import static lib.Application.lang;
+import static controller.CinemaHallController.isEmptySeatMatrix;
 
 public class CinemaHallView
 {
@@ -33,9 +35,12 @@ public class CinemaHallView
 
 	static public String prepareCinemaHallScheme(CinemaHall cinemaHall)
 	{
-		StringBuilder result = new StringBuilder();
+		if (isEmptySeatMatrix(cinemaHall))
+		{
+			return "";
+		}
 
-		boolean isNotEmpty = false;
+		StringBuilder result = new StringBuilder();
 
 		int row = 0;
 		for (ArrayList<Armchair> armchairList: cinemaHall.getSeatsMatrix())
@@ -46,25 +51,20 @@ public class CinemaHallView
 			{
 				result.append(armchair.getNumber()).append(") ").append(armchair.getType()).append(' ');
 			}
-			isNotEmpty = isNotEmpty || !armchairList.isEmpty();
 			result.append('\n');
 		}
 
-		if (isNotEmpty)
-		{
-			return result.toString();
-		}
-		else
-		{
-			return "";
-		}
+		return result.toString();
 	}
 
 	static public String prepareCinemaHallSchemeToUser(CinemaHall cinemaHall)
 	{
-		StringBuilder result = new StringBuilder();
+		if (isEmptySeatMatrix(cinemaHall))
+		{
+			return "";
+		}
 
-		boolean isNotEmpty = false;
+		StringBuilder result = new StringBuilder();
 
 		int row = 0;
 		for (ArrayList<Armchair> armchairList: cinemaHall.getSeatsMatrix())
@@ -73,19 +73,12 @@ public class CinemaHallView
 			result.append(row).append(". ");
 			for (Armchair armchair: armchairList)
 			{
-				result.append(armchair.getNumber()).append(") ").append(armchair.getType()).append(' ');
+				result.append(armchair.getNumber()).append(") ").append(armchair.getType()).append(armchair.isStatus() ? "(X)" : "(_)").append(' ');
 			}
-			isNotEmpty = isNotEmpty || !armchairList.isEmpty();
 			result.append('\n');
 		}
 
-		if (isNotEmpty)
-		{
-			return result.toString();
-		}
-		else
-		{
-			return "";
-		}
+		result.append(lang.getMessage("APPLICATION_CINEMAHALL_DESCRIPTION_FOR_USER"));
+		return result.toString();
 	}
 }

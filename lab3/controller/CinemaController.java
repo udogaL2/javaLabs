@@ -4,6 +4,8 @@ import model.*;
 
 import java.util.ArrayList;
 
+import static lib.Application.cinemaList;
+
 public class CinemaController
 {
 	static public Cinema createNewCinema(String title)
@@ -16,7 +18,7 @@ public class CinemaController
 		cinemaList.add(cinema);
 	}
 
-	static public void addCinemaHallToCinema(ArrayList<Cinema> cinemaList, int index, CinemaHall cinemaHall)
+	static public void addCinemaHallToCinema(int index, CinemaHall cinemaHall)
 	{
 		cinemaList.get(index).getCinemaHallList().add(cinemaHall);
 	}

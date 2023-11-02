@@ -5,6 +5,8 @@ import model.CinemaHall;
 
 import java.util.ArrayList;
 
+import static controller.ArmchairController.getMatrixCopy;
+
 public class CinemaHallController
 {
 	static public CinemaHall createNewCinemaHall(int id, String title, int rowCount)
@@ -47,9 +49,20 @@ public class CinemaHallController
 	{
 		CinemaHall cinemaHallCopy = createNewCinemaHall(cinemaHall.getId(), cinemaHall.getTitle(), cinemaHall.getRowCount());
 
-		cinemaHallCopy.setSeatsMatrix(cinemaHall.getSeatsMatrix());
-		cinemaHallCopy.setFilmSessionList(cinemaHall.getFilmSessionList());
+		cinemaHallCopy.setSeatsMatrix(getMatrixCopy(cinemaHall.getSeatsMatrix()));
 
 		return cinemaHallCopy;
+	}
+
+	public static boolean isEmptySeatMatrix(CinemaHall cinemaHall)
+	{
+		boolean isNotEmpty = false;
+
+		for (ArrayList<Armchair> armchairList: cinemaHall.getSeatsMatrix())
+		{
+			isNotEmpty = isNotEmpty || !armchairList.isEmpty();
+		}
+
+		return !isNotEmpty;
 	}
 }

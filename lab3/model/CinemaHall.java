@@ -10,7 +10,6 @@ public final class CinemaHall
 	private String title;
 	private int rowCount;
 	private ArrayList<ArrayList<Armchair>> seatsMatrix;
-	private ArrayList<FilmSession> filmSessionList;
 
 	public CinemaHall(String title, int rowCount)
 	{
@@ -22,7 +21,6 @@ public final class CinemaHall
 		{
 			this.seatsMatrix.add(new ArrayList<>());
 		}
-		this.filmSessionList = new ArrayList<>();
 	}
 
 	public CinemaHall(int id, String title, int rowCount)
@@ -35,7 +33,6 @@ public final class CinemaHall
 		{
 			this.seatsMatrix.add(new ArrayList<>());
 		}
-		this.filmSessionList = new ArrayList<>();
 	}
 
 	public String getTitle()
@@ -61,21 +58,6 @@ public final class CinemaHall
 	public void setSeat(int row, Armchair armchair)
 	{
 		this.seatsMatrix.get(row).add(armchair);
-	}
-
-	public ArrayList<FilmSession> getFilmSessionList()
-	{
-		return filmSessionList;
-	}
-
-	public void setFilmSessionList(ArrayList<FilmSession> filmSessionList)
-	{
-		this.filmSessionList = filmSessionList;
-	}
-
-	public void addFilmSession(FilmSession filmSessionList)
-	{
-		this.filmSessionList.add(filmSessionList);
 	}
 
 	public void setPurchasedSeat(int row, int seat)

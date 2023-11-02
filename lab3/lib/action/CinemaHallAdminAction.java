@@ -1,5 +1,6 @@
 package lib.action;
 
+import controller.CinemaController;
 import controller.CinemaHallController;
 import lib.Parser;
 import model.CinemaHall;
@@ -149,7 +150,7 @@ public class CinemaHallAdminAction
 			return;
 		}
 
-		cinemaList.get(index).addCinemaHall(new CinemaHall(title, rowCount));
+		CinemaController.addCinemaHallToCinema(index, CinemaHallController.createNewCinemaHall(title, rowCount));
 	}
 
 	private static void deleteCinemaHallAction()

@@ -16,6 +16,15 @@ public final class Armchair
 		this.status = false;
 	}
 
+	public Armchair(String title, String description, String type, int number)
+	{
+		this.title = title;
+		this.description = description;
+		this.type = type;
+		this.number = number;
+		this.status = false;
+	}
+
 	public String getTitle()
 	{
 		return title;

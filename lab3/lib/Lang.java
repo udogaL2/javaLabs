@@ -22,7 +22,7 @@ public class Lang
 			█────█──█──█─█─█────█──█──█─█──█─█──█────█──█─█──█─█──█──█──█───██─██─█──█────█──█─█──█
 			████─█─██─█──█─███──█──████─████─████────█────█─██─█─────█──███─█─█─█─████────█──█─█──█
 			█──█─██─█─█──█─█────█──█──█─█──█──█─█────█──█─██─█─█──█──█──█───█───█─█──█────█──█─█──█
-			████─█──█─█──█─███──█──█──█─█──█──█─█────████─█──█─████──█──███─█───█─█──█────█──█─█──█
+			████─█──█─█──█─███──█──█──█─█──█──█─█────████─█──█─████──█──███─█───█─█──█────█──█─█──█ (первый прототип)
 					   
 						
 			Для перехода по вкладкам укажите номер пункта меню.
@@ -64,6 +64,8 @@ public class Lang
 			0. Выйти в меню выбора команд
 			"""
 		);
+		this.messageList.put("APPLICATION_GET_CINEMA_TITLE", "Введите название кинотеатра.");
+		this.messageList.put("APPLICATION_GET_CINEMA_INDEX_TO_DELETE", "Введите номер кинотеатра, который хотите удалить.");
 		this.messageList.put("APPLICATION_CINEMA_LIST", "Текущий список кинотеатров:");
 		this.messageList.put("APPLICATION_USER_COMMAND_LIST",
 			"""
@@ -79,15 +81,17 @@ public class Lang
 			"""
 			Доступные команды для фильмов:
 			1. Посмотреть текущий список фильмов
-			2. Посмотреть ближайшие сеансы
+			2. Посмотреть текущие сеансы
 			3. Купить билет на фильм
 			
 			0. Выйти в меню выбора команд
 			"""
 		);
-
-		this.messageList.put("APPLICATION_GET_CINEMA_TITLE", "Введите название кинотеатра.");
-		this.messageList.put("APPLICATION_GET_CINEMA_INDEX_TO_DELETE", "Введите номер кинотеатра, который хотите удалить.");
+		this.messageList.put("APPLICATION_GET_FILM_SESSION_INDEX", "Введите номер сеанса, на который хотите приобрести билет.");
+		this.messageList.put("APPLICATION_GET_FILM_SESSION_ROW_INDEX", "Введите номер ряда, на который хотите приобрести билет.");
+		this.messageList.put("APPLICATION_GET_FILM_SESSION_SEAT_INDEX", "Введите номер кресла, на который хотите приобрести билет.");
+		this.messageList.put("APPLICATION_BOOKING_FILM_SESSION_SEAT_SUCCES", "Вы успешно приобрели билет.");
+		this.messageList.put("APPLICATION_BOOKING_FILM_SESSION_SEAT_ERROR", "Данное место уже выкуплено.");
 
 		this.messageList.put("APPLICATION_CINEMAHALL_LIST", "Текущий список кинозалов:");
 		this.messageList.put("APPLICATION_ADMIN_CINEMAHALL_COMMAND_LIST",
@@ -112,6 +116,9 @@ public class Lang
 		this.messageList.put("APPLICATION_GET_CINEMAHALL_ROW_COUNT_NOT_VALID", "Количество рядов кинозала не может быть равным нулю.");
 		this.messageList.put("APPLICATION_GET_CINEMAHALL_CINEMA_ID_TO_ADD", "Введите номер кинотеатра, в который хотите добавить этот кинозал.");
 		this.messageList.put("APPLICATION_GET_CINEMAHALL_INDEX_TO_DELETE", "Введите номер кинозала, который хотите удалить.");
+		this.messageList.put("APPLICATION_CINEMAHALL_DESCRIPTION_FOR_USER", "(_) - место свободно.\n(X) - место занято.");
+		this.messageList.put("APPLICATION_CINEMAHALL_EMPTY_SEAT_ERROR", "На данный сеанс не были добавлены места, обратитесь к администратору по данному вопросу.");
+		this.messageList.put("APPLICATION_CINEMAHALL_EMPTY_ROW_ERROR", "Выбран пустой ряд, обратитесь к администратору по данному вопросу.");
 
 		this.messageList.put("APPLICATION_ADMIN_FILM_COMMAND_LIST",
 			"""

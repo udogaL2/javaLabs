@@ -2,10 +2,10 @@ package view;
 
 import lib.Parser;
 import model.FilmSession;
-import view.FilmView;
 
 import java.util.ArrayList;
 
+import static view.CinemaHallView.prepareCinemaHallSchemeToUser;
 public class FilmSessionView
 {
 	public static String prepareFilmSessionToPrint(FilmSession filmSession)
@@ -26,16 +26,8 @@ public class FilmSessionView
 		return result.toString();
 	}
 
-	public static String prepareFilmSessionToPrint(ArrayList<FilmSession> filmSessionList)
+	public static String prepareFilmSessionToPrintForUser(FilmSession filmSession)
 	{
-		StringBuilder result = new StringBuilder();
-
-		for (int i = 0; i < filmSessionList.size(); i++)
-		{
-			FilmSession filmSession = filmSessionList.get(i);
-			result.append(i + 1).append(". ").append(prepareFilmSessionToPrint(filmSession)).append("\n");
-		}
-
-		return result.toString();
+		return prepareFilmSessionToPrint(filmSession) + '\n' + prepareCinemaHallSchemeToUser(filmSession.getCinemaHall());
 	}
 }

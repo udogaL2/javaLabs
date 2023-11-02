@@ -43,13 +43,4 @@ public class FilmSessionController
 			}
 		}
 	}
-
-	public static ArrayList<FilmSession> cloneList(ArrayList<FilmSession> filmSessionList) {
-		ArrayList<FilmSession> clone = new ArrayList<FilmSession>();
-		for (FilmSession filmSession : filmSessionList)
-		{
-			clone.add(filmSession);
-		}
-		return clone;
-	}
 }
