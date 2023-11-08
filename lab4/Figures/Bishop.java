@@ -17,11 +17,4 @@ public class Bishop extends Figure{
     public boolean canAttack(int rowFrom, int colFrom, int rowTo, int colTo) {
         return this.canMove(rowFrom, colFrom, rowTo, colTo);
     }
-
-    @Override
-    public boolean hasObstacles(Figure[][] fields, int rowFrom, int colFrom, int rowTo, int colTo)
-    {
-        return true;
-    }
-
 }

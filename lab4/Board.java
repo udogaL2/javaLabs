@@ -9,6 +9,8 @@ public class Board
 	private ArrayList<String> takeWhite = new ArrayList(16);
 	private ArrayList<String> takeBlack = new ArrayList(16);
 
+	private static final boolean check = false;
+
 	public char getColorGaming()
 	{
 		return colorGaming;
@@ -82,15 +84,38 @@ public class Board
 			return false;
 		}
 
-		if (this.fields[row1][col1].getColor() != this.colorGaming)
+		int[] kingLocation = getKingLocation();
+
+		if (
+			isCheck(kingLocation[0], kingLocation[1])
+
+		)
+		{
+			System.out.println("check");
+			return false;
+		}
+
+		if (
+			this.fields[row1][col1].getColor() != this.colorGaming
+			|| this.fields[row2][col2] instanceof King
+		)
 		{
 			return false;
 		}
 
 		if (
+			this.fields[row1][col1] instanceof King
+			&& isCheck(row2, col2)
+		)
+		{
+			System.out.println("check");
+			return false;
+		}
+
+		if (
 			this.fields[row2][col2] == null
-			&& figure.hasObstacles(this.fields, row1, col1, row2, col2)
 			&& figure.canMove(row1, col1, row2, col2)
+			&& !hasObstacles(row1, col1, row2, col2)
 		)
 		{
 			System.out.println("move");
@@ -101,9 +126,9 @@ public class Board
 		}
 		else if (
 			this.fields[row2][col2] != null
-			&& figure.hasObstacles(this.fields, row1, col1, row2, col2)
-			&& this.fields[row2][col2].getColor() != this.fields[row1][col1].getColor()
 			&& figure.canAttack(row1, col1, row2, col2)
+			&& !hasObstacles(row1, col1, row2, col2)
+			&& this.fields[row2][col2].getColor() != this.fields[row1][col1].getColor()
 		)
 		{
 			System.out.println("attack");
@@ -125,6 +150,87 @@ public class Board
 			this.fields[row1][col1] = null;
 
 			return true;
+		}
+
+		return false;
+	}
+
+	public boolean isCheck(int row, int col)
+	{
+		for (int i = 0; i < 8; i++)
+		{
+			for (int j = 0; j < 8; j++)
+			{
+				if (this.fields[i][j] != null)
+				{
+					Figure figure = this.fields[i][j];
+
+					if (
+						figure.getColor() != this.getColorGaming()
+						&& figure.canAttack(i, j, row, col)
+						&& !hasObstacles(i, j, row, col)
+					)
+					{
+						return true;
+					}
+				}
+			}
+		}
+
+		return false;
+	}
+
+	private int[] getKingLocation()
+	{
+		for (int i = 0; i < 8; i++)
+		{
+			for (int j = 0; j < 8; j++)
+			{
+				if (
+					this.fields[i][j] instanceof King
+					&& this.fields[i][j].getColor() == this.getColorGaming()
+				)
+				{
+					return new int[]{i, j};
+				}
+			}
+		}
+
+		return new int[0];
+	}
+
+	public boolean hasObstacles(int rowFrom, int colFrom, int rowTo, int colTo)
+	{
+		int dx, dy;
+
+		if (rowFrom == rowTo)
+		{
+			dx = 0;
+		} else
+		{
+			dx = (rowTo - rowFrom) / Math.abs(rowTo - rowFrom);
+		}
+
+		if (colFrom == colTo)
+		{
+			dy = 0;
+		} else
+		{
+			dy = (colTo - colFrom) / Math.abs(colTo - colFrom);
+		}
+
+		while (colFrom != colTo || rowFrom != rowTo)
+		{
+			colFrom += dy;
+			rowFrom += dx;
+
+			if (
+				(colFrom != colTo || rowFrom != rowTo)
+					&& this.fields[rowFrom][colFrom] != null
+			)
+			{
+				return true;
+			}
 		}
 
 		return false;

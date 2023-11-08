@@ -27,9 +27,4 @@ public class King extends Figure
 	{
 		return this.canMove(rowFrom, colFrom, rowTo, colTo);
 	}
-
-	public boolean hasObstacles(Figure[][] fields, int rowFrom, int colFrom, int rowTo, int colTo)
-	{
-		return true;
-	}
 }

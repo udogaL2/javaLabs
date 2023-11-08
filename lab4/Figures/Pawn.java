@@ -43,9 +43,4 @@ public class Pawn extends Figure
 	{
 		return Math.abs(rowFrom - rowTo) == 1 && Math.abs(colFrom - colTo) == 1;
 	}
-
-	public boolean hasObstacles(Figure[][] fields, int rowFrom, int colFrom, int rowTo, int colTo)
-	{
-		return true;
-	}
 }

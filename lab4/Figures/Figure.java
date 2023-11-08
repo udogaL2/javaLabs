@@ -53,6 +53,4 @@ public abstract class Figure
 	{
 		return this.canMove(rowFrom, colFrom, rowTo, colTo);
 	}
-
-	abstract public boolean hasObstacles(Figure[][] fields, int rowFrom, int colFrom, int rowTo, int colTo);
 }
