@@ -23,4 +23,38 @@ public class Validator
 
 		return true;
 	}
+
+	public static boolean isStringSplit(String string)
+	{
+		try
+		{
+			String[] strings = string.split(" ");
+
+			return strings.length == 4;
+		}
+		catch (Exception e)
+		{
+			return false;
+		}
+	}
+
+	public static int[] isCoordsValid(String[] coords)
+	{
+		int[] parsedCoords = new int[4];
+		int index = 0;
+
+		for (String coord: coords)
+		{
+			int parsedCord = isNumeric(coord);
+
+			if (parsedCord < 0 || parsedCord > 7)
+			{
+				return null;
+			}
+
+			parsedCoords[index++] = parsedCord;
+		}
+
+		return parsedCoords;
+	}
 }
